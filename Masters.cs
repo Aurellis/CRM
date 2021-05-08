@@ -9,16 +9,11 @@ using System.Windows.Forms;
 
 namespace CRM
 {
-    public partial class Clients : Form
+    public partial class Masters : Form
     {
-        public Clients()
+        public Masters()
         {
             InitializeComponent();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

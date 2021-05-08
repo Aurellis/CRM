@@ -1,7 +1,7 @@
 ﻿
 namespace CRM
 {
-    partial class Clients
+    partial class Masters
     {
         /// <summary>
         /// Required designer variable.
@@ -80,18 +80,18 @@ namespace CRM
             this.dataGridView1.Size = new System.Drawing.Size(366, 417);
             this.dataGridView1.TabIndex = 5;
             // 
-            // Clients
+            // Masters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 473);
+            this.ClientSize = new System.Drawing.Size(389, 480);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Clients";
-            this.Text = "Список клиентов (все)";
+            this.Name = "Masters";
+            this.Text = "Список мастеров (все)";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
