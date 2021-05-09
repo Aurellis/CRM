@@ -16,6 +16,11 @@ namespace CRM
             InitializeComponent();
         }
 
+        public Main(string _login, string _password, string _server, string _database)
+        {
+
+        }
+
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

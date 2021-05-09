@@ -61,9 +61,17 @@ namespace CRM
 
         internal static bool Login(string _login, string _password, string _server, string _database)
         {
-            //SqlQuery() ;
-            MessageBox.Show("В процессе реализации");
-            return true;
+            if (SettingsConnect(_server,_database))
+            {
+                //SqlQuery() ;
+                MessageBox.Show("В процессе реализации");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 

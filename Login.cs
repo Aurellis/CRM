@@ -113,13 +113,16 @@ namespace CRM
         {
             if (connectState)
             {
-                if (Connect.Login(tLogin.Text, tPassWord.Text, tServerHost.Text, cbDataBases.SelectedItem.ToString()) && tLogin.Text != string.Empty && tPassWord.Text != string.Empty)
+                if (tLogin.Text != string.Empty && tPassWord.Text != string.Empty)
                 {
-                    Main mainWindow = new Main();
-                    mainWindow.Show();
-                    this.ShowInTaskbar = false;
-                    this.Hide();
-                }
+                    if (Connect.Login(tLogin.Text, tPassWord.Text, tServerHost.Text, cbDataBases.SelectedItem.ToString()))
+                    {
+                        Main mainWindow = new Main(tLogin.Text, tPassWord.Text, tServerHost.Text, cbDataBases.SelectedItem.ToString());
+                        mainWindow.Show();
+                        this.ShowInTaskbar = false;
+                        this.Hide();
+                    }
+                }                
                 else
                 {
                     MessageBox.Show("Логин или пароль не введен", "Ошибка!");
