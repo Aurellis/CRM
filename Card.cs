@@ -17,7 +17,7 @@ namespace CRM
 
             if (createOrEdit)
             {
-                AddNewData();
+                
             }
             else
             {
@@ -34,7 +34,7 @@ namespace CRM
         {
             if (tClentSName.Text != string.Empty && tClentName.Text != string.Empty && cbMaster.SelectedItem.ToString() != string.Empty && cbService.SelectedItem.ToString() != string.Empty && cbTypeReq.SelectedItem.ToString() != string.Empty)
             {
-
+                Connect.AddCard(tClentSName.Text, tClentName.Text, tClientPatron.Text, tClientTel.Text, cbMaster.SelectedItem.ToString(), cbService.SelectedItem.ToString(), dtPlanDelivery.Value.ToString(), cbUser.SelectedItem.ToString(), cbTypeReq.SelectedItem.ToString(), cbIsDone.Checked, dtReg.Value.ToString(), tSumToPay.Text, tSumPay.Text, dtPay.Value.ToString(), cbPayType.SelectedItem.ToString(), tPrim.Text);
             }
             else
             {
@@ -44,7 +44,7 @@ namespace CRM
 
         private void bSave_Click(object sender, EventArgs e)
         {
-
+            AddNewData();
         }
     }
 }

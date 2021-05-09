@@ -61,6 +61,38 @@ namespace CRM
             }
         }
 
+        internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim)
+        {
+            MySqlConnection mySqlConn = new MySqlConnection();
+            mySqlConn.ConnectionString = "Database=" + baseName + ";Data Source=" + serverName + ";User Id=root;Password=1234";
+
+            try
+            {
+                string addCardQuery = "call addcard('" + clientSName + "','" + clientSName + "','" + patron + "','" + tel + "','" + master+"','"+service+"','"+planDeliveryDat+"','"+user+"','"+typeReg+"',"+isDone+",'"+dateReg+"',"+sumToPay+","+sumPay+",'"+datePay+"','"+payType+"','"+prim+"'";
+
+                MessageBox.Show(addCardQuery,"Тестовый вывод sql");
+            //    MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
+            //    sqlCommand.CommandType = CommandType.Text;
+            //    mySqlConn.Open();
+            //    MySqlDataReader dataReader = sqlCommand.ExecuteReader();
+
+            //    while (dataReader.Read())
+            //    {
+            //        DataBases.Add(dataReader.GetString(0));
+            //    }
+
+
+            //    dataReader.Close();
+            //    mySqlConn.Close();
+            //    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
+               
+            }
+        }
+
         internal static bool Login(string _login, string _password, string _server, string _database)
         {
             if (SqlLogin(_login, _password))

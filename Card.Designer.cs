@@ -34,7 +34,7 @@ namespace CRM
             this.tClentName = new System.Windows.Forms.TextBox();
             this.tClentSName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tClientTel = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,7 +99,7 @@ namespace CRM
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.tClientTel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -114,12 +114,12 @@ namespace CRM
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Данные клиента";
             // 
-            // textBox4
+            // tClientTel
             // 
-            this.textBox4.Location = new System.Drawing.Point(141, 102);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(125, 20);
-            this.textBox4.TabIndex = 8;
+            this.tClientTel.Location = new System.Drawing.Point(141, 102);
+            this.tClientTel.Name = "tClientTel";
+            this.tClientTel.Size = new System.Drawing.Size(125, 20);
+            this.tClientTel.TabIndex = 8;
             // 
             // label4
             // 
@@ -279,6 +279,7 @@ namespace CRM
             // 
             // tSumPay
             // 
+            this.tSumPay.Enabled = false;
             this.tSumPay.Location = new System.Drawing.Point(126, 78);
             this.tSumPay.Name = "tSumPay";
             this.tSumPay.Size = new System.Drawing.Size(140, 20);
@@ -286,6 +287,7 @@ namespace CRM
             // 
             // tSumToPay
             // 
+            this.tSumToPay.Enabled = false;
             this.tSumToPay.Location = new System.Drawing.Point(126, 24);
             this.tSumToPay.Name = "tSumToPay";
             this.tSumToPay.Size = new System.Drawing.Size(140, 20);
@@ -478,7 +480,7 @@ namespace CRM
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tClientTel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
