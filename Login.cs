@@ -111,12 +111,36 @@ namespace CRM
 
         private void bLogin_Click(object sender, EventArgs e)
         {
-            if (connectState)
+            if (connectState && Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString()))
             {
                 if (tLogin.Text != string.Empty && tPassWord.Text != string.Empty)
                 {
                     if (Connect.Login(tLogin.Text, tPassWord.Text, tServerHost.Text, cbDataBases.SelectedItem.ToString()))
                     {
+
+                        try
+                        {
+                            if (File.Exists(settingsPath))
+                            {
+                                File.Delete(settingsPath);
+                            }
+
+                            ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text };
+                            string connectSettingsJson = JsonSerializer.Serialize<ConnectSettings>(connectSettings);
+
+                            if (!Directory.Exists(Path.Combine(programmFolder, @"Settings")))
+                            {
+                                Directory.CreateDirectory(Path.Combine(programmFolder, @"Settings"));
+                            }
+
+                            File.WriteAllText(settingsPath, connectSettingsJson);
+                            connectState = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка");
+                        }
+
                         Main mainWindow = new Main(tLogin.Text, tPassWord.Text, tServerHost.Text, cbDataBases.SelectedItem.ToString());
                         mainWindow.Show();
                         this.ShowInTaskbar = false;

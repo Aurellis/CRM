@@ -18,6 +18,7 @@ namespace CRM
 
         public Main(string _login, string _password, string _server, string _database)
         {
+            InitializeComponent();
 
         }
 

@@ -13,9 +13,11 @@ namespace CRM
     static class Connect
     {
         public static List<string> DataBases { get; internal set; }
+        public static object UserName { get; private set; }
 
         private static string serverName;
         private static string baseName;
+       
 
         internal static bool SettingsConnect(string _serverName, string _baseName = "")
         {
@@ -61,10 +63,8 @@ namespace CRM
 
         internal static bool Login(string _login, string _password, string _server, string _database)
         {
-            if (SettingsConnect(_server,_database))
+            if (SqlLogin(_login, _password))
             {
-                //SqlQuery() ;
-                MessageBox.Show("В процессе реализации");
                 return true;
             }
             else
@@ -72,6 +72,44 @@ namespace CRM
                 return false;
             }
             
+        }
+
+        private static bool SqlLogin(string login, string password)
+        {
+            MySqlConnection mySqlConn = new MySqlConnection();
+
+            mySqlConn.ConnectionString = "Database=" + baseName + ";Data Source=" + serverName + ";User Id=root;Password=1234";
+
+            try
+            {
+                MySqlCommand sqlCommand = new MySqlCommand("select * from users where login ='"+login+"' and password ='"+password+"'", mySqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+                mySqlConn.Open();
+                MySqlDataReader dataReader = sqlCommand.ExecuteReader();
+
+                if (dataReader.HasRows)
+                {
+                    dataReader.Read();
+                    UserName = dataReader.GetValue(4);
+                    dataReader.Close();
+                    mySqlConn.Close();
+                    return true;
+                }
+                else
+                {
+                    dataReader.Close();
+                    mySqlConn.Close();
+                    MessageBox.Show("Ничего не найдено. Проверьте правильность ввода логина и пароля","Ошибка");
+                    return false;
+                }
+                
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
+                return false;
+            }
         }
     }
 
