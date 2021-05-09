@@ -34,6 +34,7 @@ namespace CRM
             this.администрированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.праваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.подразделенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.моиНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +51,6 @@ namespace CRM
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.подразделенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -90,14 +90,20 @@ namespace CRM
             // пользователиToolStripMenuItem
             // 
             this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.пользователиToolStripMenuItem.Text = "Пользователи";
             // 
             // праваToolStripMenuItem
             // 
             this.праваToolStripMenuItem.Name = "праваToolStripMenuItem";
-            this.праваToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.праваToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.праваToolStripMenuItem.Text = "Права";
+            // 
+            // подразделенияToolStripMenuItem
+            // 
+            this.подразделенияToolStripMenuItem.Name = "подразделенияToolStripMenuItem";
+            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.подразделенияToolStripMenuItem.Text = "Подразделения";
             // 
             // моиНастройкиToolStripMenuItem
             // 
@@ -117,13 +123,13 @@ namespace CRM
             // списокToolStripMenuItem
             // 
             this.списокToolStripMenuItem.Name = "списокToolStripMenuItem";
-            this.списокToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.списокToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.списокToolStripMenuItem.Text = "Список";
             // 
             // настройкаОтчетовToolStripMenuItem
             // 
             this.настройкаОтчетовToolStripMenuItem.Name = "настройкаОтчетовToolStripMenuItem";
-            this.настройкаОтчетовToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.настройкаОтчетовToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.настройкаОтчетовToolStripMenuItem.Text = "Настройка отчетов";
             // 
             // спискиToolStripMenuItem
@@ -138,13 +144,13 @@ namespace CRM
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             // 
             // услугиToolStripMenuItem
             // 
             this.услугиToolStripMenuItem.Name = "услугиToolStripMenuItem";
-            this.услугиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.услугиToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.услугиToolStripMenuItem.Text = "Услуги";
             // 
             // dataGridView1
@@ -226,12 +232,6 @@ namespace CRM
             this.label3.TabIndex = 9;
             this.label3.Text = "Быстрый поиск";
             // 
-            // подразделенияToolStripMenuItem
-            // 
-            this.подразделенияToolStripMenuItem.Name = "подразделенияToolStripMenuItem";
-            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.подразделенияToolStripMenuItem.Text = "Подразделения";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,7 +249,9 @@ namespace CRM
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система учета заявок";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
