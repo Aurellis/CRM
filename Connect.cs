@@ -13,7 +13,7 @@ namespace CRM
     static class Connect
     {
         public static List<string> DataBases { get; internal set; }
-        public static object UserName { get; private set; }
+        public static string UserName { get; private set; }
 
         private static string serverName;
         private static string baseName;
@@ -90,7 +90,7 @@ namespace CRM
                 if (dataReader.HasRows)
                 {
                     dataReader.Read();
-                    UserName = dataReader.GetValue(4);
+                    UserName = dataReader.GetString(4);
                     dataReader.Close();
                     mySqlConn.Close();
                     return true;

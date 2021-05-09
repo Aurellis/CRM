@@ -69,6 +69,7 @@ namespace CRM
             this.tLogin.Name = "tLogin";
             this.tLogin.Size = new System.Drawing.Size(202, 20);
             this.tLogin.TabIndex = 2;
+            this.tLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tPassWord
             // 
@@ -77,6 +78,7 @@ namespace CRM
             this.tPassWord.PasswordChar = '*';
             this.tPassWord.Size = new System.Drawing.Size(202, 20);
             this.tPassWord.TabIndex = 3;
+            this.tPassWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // bLogin
             // 
@@ -146,6 +148,7 @@ namespace CRM
             this.tServerHost.Name = "tServerHost";
             this.tServerHost.Size = new System.Drawing.Size(202, 20);
             this.tServerHost.TabIndex = 1;
+            this.tServerHost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 

@@ -5,12 +5,20 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CRM
 {
     public partial class Main : Form
     {
+        //TimerCallback timerCallback = new TimerCallback(CheckDateTime);
+
+        //private static  void CheckDateTime(object state)
+        //{
+        //    lDateTime.Text = DateTime.Now.ToString();
+        //}
+
         public Main()
         {
             InitializeComponent();
@@ -19,12 +27,32 @@ namespace CRM
         public Main(string _login, string _password, string _server, string _database)
         {
             InitializeComponent();
-
+            lFullName.Text = Connect.UserName;
+            
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lDateTime.Text = DateTime.Now.ToString();
+        }
+
+        private void bAddCard_Click(object sender, EventArgs e)
+        {
+            Card card = new Card();
+            card.ShowInTaskbar = false;
+            card.ShowDialog();
+        }
+
+        private void bFilter_Click(object sender, EventArgs e)
+        {
+            Filter filter = new Filter();
+            filter.ShowInTaskbar = false;
+            filter.ShowDialog();
         }
     }
 }

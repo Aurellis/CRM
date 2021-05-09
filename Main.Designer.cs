@@ -29,6 +29,8 @@ namespace CRM
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.управлениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.администрированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,14 +45,15 @@ namespace CRM
             this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.услугиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.lFullName = new System.Windows.Forms.Label();
+            this.lDateTime = new System.Windows.Forms.Label();
+            this.bAddCard = new System.Windows.Forms.Button();
+            this.bOpenCard = new System.Windows.Forms.Button();
+            this.bPrint = new System.Windows.Forms.Button();
+            this.bFilter = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -162,59 +165,60 @@ namespace CRM
             this.dataGridView1.Size = new System.Drawing.Size(777, 409);
             this.dataGridView1.TabIndex = 1;
             // 
-            // label1
+            // lFullName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(633, 479);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Имя пользователя";
+            this.lFullName.AutoSize = true;
+            this.lFullName.Location = new System.Drawing.Point(633, 479);
+            this.lFullName.Name = "lFullName";
+            this.lFullName.Size = new System.Drawing.Size(103, 13);
+            this.lFullName.TabIndex = 2;
+            this.lFullName.Text = "Имя пользователя";
             // 
-            // label2
+            // lDateTime
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 479);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Системное время";
+            this.lDateTime.AutoSize = true;
+            this.lDateTime.Location = new System.Drawing.Point(13, 479);
+            this.lDateTime.Name = "lDateTime";
+            this.lDateTime.Size = new System.Drawing.Size(0, 13);
+            this.lDateTime.TabIndex = 3;
             // 
-            // button1
+            // bAddCard
             // 
-            this.button1.Location = new System.Drawing.Point(16, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 34);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Добавить новую заяку";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bAddCard.Location = new System.Drawing.Point(16, 27);
+            this.bAddCard.Name = "bAddCard";
+            this.bAddCard.Size = new System.Drawing.Size(95, 34);
+            this.bAddCard.TabIndex = 4;
+            this.bAddCard.Text = "Добавить новую заяку";
+            this.bAddCard.UseVisualStyleBackColor = true;
+            this.bAddCard.Click += new System.EventHandler(this.bAddCard_Click);
             // 
-            // button2
+            // bOpenCard
             // 
-            this.button2.Location = new System.Drawing.Point(117, 27);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 34);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Открыть карточку заявки";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bOpenCard.Location = new System.Drawing.Point(117, 27);
+            this.bOpenCard.Name = "bOpenCard";
+            this.bOpenCard.Size = new System.Drawing.Size(99, 34);
+            this.bOpenCard.TabIndex = 5;
+            this.bOpenCard.Text = "Открыть карточку заявки";
+            this.bOpenCard.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // bPrint
             // 
-            this.button3.Location = new System.Drawing.Point(222, 27);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 34);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Печать";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bPrint.Location = new System.Drawing.Point(222, 27);
+            this.bPrint.Name = "bPrint";
+            this.bPrint.Size = new System.Drawing.Size(95, 34);
+            this.bPrint.TabIndex = 6;
+            this.bPrint.Text = "Печать";
+            this.bPrint.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // bFilter
             // 
-            this.button4.Location = new System.Drawing.Point(323, 27);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 34);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Поиск по параметрам";
-            this.button4.UseVisualStyleBackColor = true;
+            this.bFilter.Location = new System.Drawing.Point(323, 27);
+            this.bFilter.Name = "bFilter";
+            this.bFilter.Size = new System.Drawing.Size(95, 34);
+            this.bFilter.TabIndex = 7;
+            this.bFilter.Text = "Поиск по параметрам";
+            this.bFilter.UseVisualStyleBackColor = true;
+            this.bFilter.Click += new System.EventHandler(this.bFilter_Click);
             // 
             // textBox1
             // 
@@ -232,6 +236,12 @@ namespace CRM
             this.label3.TabIndex = 9;
             this.label3.Text = "Быстрый поиск";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,14 +249,15 @@ namespace CRM
             this.ClientSize = new System.Drawing.Size(802, 501);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.bFilter);
+            this.Controls.Add(this.bPrint);
+            this.Controls.Add(this.bOpenCard);
+            this.Controls.Add(this.bAddCard);
+            this.Controls.Add(this.lDateTime);
+            this.Controls.Add(this.lFullName);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -272,17 +283,18 @@ namespace CRM
         private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкаОтчетовToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lFullName;
+        private System.Windows.Forms.Label lDateTime;
+        private System.Windows.Forms.Button bAddCard;
+        private System.Windows.Forms.Button bOpenCard;
+        private System.Windows.Forms.Button bPrint;
+        private System.Windows.Forms.Button bFilter;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem услугиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem подразделенияToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
