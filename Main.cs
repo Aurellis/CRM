@@ -54,5 +54,33 @@ namespace CRM
             filter.ShowInTaskbar = false;
             filter.ShowDialog();
         }
+
+        private void пользователиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Users users = new Users();
+            users.ShowInTaskbar = false;
+            users.ShowDialog();
+        }
+
+        private void мастераToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Masters masters = new Masters();
+            masters.ShowInTaskbar = false;
+            masters.ShowDialog();
+        }
+
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clients clients = new Clients();
+            clients.ShowInTaskbar = false;
+            clients.ShowDialog();
+        }
+
+        private void услугиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Services services = new Services();
+            services.ShowInTaskbar = false;
+            services.ShowDialog();
+        }
     }
 }

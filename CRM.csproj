@@ -206,5 +206,8 @@
   <ItemGroup>
     <Folder Include="SQL\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="maestro.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
