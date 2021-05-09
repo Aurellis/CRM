@@ -194,7 +194,8 @@ namespace CRM
             // 
             // dtPlanDelivery
             // 
-            this.dtPlanDelivery.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPlanDelivery.CustomFormat = "dd.mm.yyyy HH:mm";
+            this.dtPlanDelivery.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtPlanDelivery.Location = new System.Drawing.Point(137, 77);
             this.dtPlanDelivery.Name = "dtPlanDelivery";
             this.dtPlanDelivery.Size = new System.Drawing.Size(140, 20);
@@ -212,6 +213,8 @@ namespace CRM
             // cbMaster
             // 
             this.cbMaster.FormattingEnabled = true;
+            this.cbMaster.Items.AddRange(new object[] {
+            "мастер"});
             this.cbMaster.Location = new System.Drawing.Point(137, 48);
             this.cbMaster.Name = "cbMaster";
             this.cbMaster.Size = new System.Drawing.Size(140, 21);
@@ -238,6 +241,8 @@ namespace CRM
             // cbService
             // 
             this.cbService.FormattingEnabled = true;
+            this.cbService.Items.AddRange(new object[] {
+            "услуга"});
             this.cbService.Location = new System.Drawing.Point(137, 19);
             this.cbService.Name = "cbService";
             this.cbService.Size = new System.Drawing.Size(140, 21);
@@ -263,6 +268,9 @@ namespace CRM
             // cbPayType
             // 
             this.cbPayType.FormattingEnabled = true;
+            this.cbPayType.Items.AddRange(new object[] {
+            "кэш",
+            "безнал"});
             this.cbPayType.Location = new System.Drawing.Point(126, 105);
             this.cbPayType.Name = "cbPayType";
             this.cbPayType.Size = new System.Drawing.Size(140, 21);
@@ -313,7 +321,8 @@ namespace CRM
             // 
             // dtPay
             // 
-            this.dtPay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPay.CustomFormat = "dd.mm.yyyy HH:mm";
+            this.dtPay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtPay.Location = new System.Drawing.Point(126, 51);
             this.dtPay.Name = "dtPay";
             this.dtPay.Size = new System.Drawing.Size(140, 20);
@@ -355,6 +364,9 @@ namespace CRM
             // cbTypeReq
             // 
             this.cbTypeReq.FormattingEnabled = true;
+            this.cbTypeReq.Items.AddRange(new object[] {
+            "личное",
+            "телефонное"});
             this.cbTypeReq.Location = new System.Drawing.Point(137, 77);
             this.cbTypeReq.Name = "cbTypeReq";
             this.cbTypeReq.Size = new System.Drawing.Size(142, 21);
@@ -362,7 +374,8 @@ namespace CRM
             // 
             // dtReg
             // 
-            this.dtReg.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtReg.CustomFormat = "dd.mm.yyyy HH:mm";
+            this.dtReg.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtReg.Location = new System.Drawing.Point(139, 51);
             this.dtReg.Name = "dtReg";
             this.dtReg.Size = new System.Drawing.Size(140, 20);
@@ -380,6 +393,8 @@ namespace CRM
             // cbUser
             // 
             this.cbUser.FormattingEnabled = true;
+            this.cbUser.Items.AddRange(new object[] {
+            "юзер"});
             this.cbUser.Location = new System.Drawing.Point(137, 24);
             this.cbUser.Name = "cbUser";
             this.cbUser.Size = new System.Drawing.Size(142, 21);
