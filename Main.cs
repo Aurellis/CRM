@@ -43,7 +43,7 @@ namespace CRM
 
         private void bAddCard_Click(object sender, EventArgs e)
         {
-            Card card = new Card();
+            Card card = new Card(true);
             card.ShowInTaskbar = false;
             card.ShowDialog();
         }

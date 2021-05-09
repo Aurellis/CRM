@@ -30,9 +30,9 @@ namespace CRM
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Card));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tClientPatron = new System.Windows.Forms.TextBox();
+            this.tClentName = new System.Windows.Forms.TextBox();
+            this.tClentSName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,34 +41,34 @@ namespace CRM
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cbIsDone = new System.Windows.Forms.CheckBox();
+            this.dtPlanDelivery = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbMaster = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbService = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbPayType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tSumPay = new System.Windows.Forms.TextBox();
+            this.tSumToPay = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtPay = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.cbTypeReq = new System.Windows.Forms.ComboBox();
+            this.dtReg = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbUser = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.tPrim = new System.Windows.Forms.TextBox();
+            this.bSave = new System.Windows.Forms.Button();
+            this.bEdit = new System.Windows.Forms.Button();
+            this.bPrint = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -76,26 +76,26 @@ namespace CRM
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tClientPatron
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 74);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 20);
-            this.textBox1.TabIndex = 1;
+            this.tClientPatron.Location = new System.Drawing.Point(141, 74);
+            this.tClientPatron.Name = "tClientPatron";
+            this.tClientPatron.Size = new System.Drawing.Size(125, 20);
+            this.tClientPatron.TabIndex = 1;
             // 
-            // textBox2
+            // tClentName
             // 
-            this.textBox2.Location = new System.Drawing.Point(141, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 20);
-            this.textBox2.TabIndex = 2;
+            this.tClentName.Location = new System.Drawing.Point(141, 48);
+            this.tClentName.Name = "tClentName";
+            this.tClentName.Size = new System.Drawing.Size(125, 20);
+            this.tClentName.TabIndex = 2;
             // 
-            // textBox3
+            // tClentSName
             // 
-            this.textBox3.Location = new System.Drawing.Point(141, 23);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(125, 20);
-            this.textBox3.TabIndex = 3;
+            this.tClentSName.Location = new System.Drawing.Point(141, 23);
+            this.tClentSName.Name = "tClentSName";
+            this.tClentSName.Size = new System.Drawing.Size(125, 20);
+            this.tClentSName.TabIndex = 3;
             // 
             // groupBox1
             // 
@@ -103,10 +103,10 @@ namespace CRM
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tClientPatron);
+            this.groupBox1.Controls.Add(this.tClentName);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.tClentSName);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(272, 134);
@@ -160,13 +160,13 @@ namespace CRM
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.cbIsDone);
+            this.groupBox2.Controls.Add(this.dtPlanDelivery);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.comboBox2);
+            this.groupBox2.Controls.Add(this.cbMaster);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.cbService);
             this.groupBox2.Location = new System.Drawing.Point(290, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(285, 134);
@@ -183,22 +183,22 @@ namespace CRM
             this.label15.TabIndex = 7;
             this.label15.Text = "Услуга предоставлена?";
             // 
-            // checkBox1
+            // cbIsDone
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(137, 105);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbIsDone.AutoSize = true;
+            this.cbIsDone.Location = new System.Drawing.Point(137, 105);
+            this.cbIsDone.Name = "cbIsDone";
+            this.cbIsDone.Size = new System.Drawing.Size(15, 14);
+            this.cbIsDone.TabIndex = 6;
+            this.cbIsDone.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dtPlanDelivery
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(137, 77);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(140, 20);
-            this.dateTimePicker1.TabIndex = 5;
+            this.dtPlanDelivery.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPlanDelivery.Location = new System.Drawing.Point(137, 77);
+            this.dtPlanDelivery.Name = "dtPlanDelivery";
+            this.dtPlanDelivery.Size = new System.Drawing.Size(140, 20);
+            this.dtPlanDelivery.TabIndex = 5;
             // 
             // label7
             // 
@@ -209,13 +209,13 @@ namespace CRM
             this.label7.TabIndex = 4;
             this.label7.Text = "Дата и время оказания";
             // 
-            // comboBox2
+            // cbMaster
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(137, 48);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(140, 21);
-            this.comboBox2.TabIndex = 3;
+            this.cbMaster.FormattingEnabled = true;
+            this.cbMaster.Location = new System.Drawing.Point(137, 48);
+            this.cbMaster.Name = "cbMaster";
+            this.cbMaster.Size = new System.Drawing.Size(140, 21);
+            this.cbMaster.TabIndex = 3;
             // 
             // label6
             // 
@@ -235,23 +235,23 @@ namespace CRM
             this.label5.TabIndex = 1;
             this.label5.Text = "Услуга";
             // 
-            // comboBox1
+            // cbService
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(137, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(140, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cbService.FormattingEnabled = true;
+            this.cbService.Location = new System.Drawing.Point(137, 19);
+            this.cbService.Name = "cbService";
+            this.cbService.Size = new System.Drawing.Size(140, 21);
+            this.cbService.TabIndex = 0;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBox3);
+            this.groupBox3.Controls.Add(this.cbPayType);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.textBox6);
-            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.tSumPay);
+            this.groupBox3.Controls.Add(this.tSumToPay);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.dateTimePicker2);
+            this.groupBox3.Controls.Add(this.dtPay);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(12, 152);
             this.groupBox3.Name = "groupBox3";
@@ -260,13 +260,13 @@ namespace CRM
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Данные о оплате";
             // 
-            // comboBox3
+            // cbPayType
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(126, 105);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(140, 21);
-            this.comboBox3.TabIndex = 12;
+            this.cbPayType.FormattingEnabled = true;
+            this.cbPayType.Location = new System.Drawing.Point(126, 105);
+            this.cbPayType.Name = "cbPayType";
+            this.cbPayType.Size = new System.Drawing.Size(140, 21);
+            this.cbPayType.TabIndex = 12;
             // 
             // label11
             // 
@@ -277,19 +277,19 @@ namespace CRM
             this.label11.TabIndex = 11;
             this.label11.Text = "Тип оплаты";
             // 
-            // textBox6
+            // tSumPay
             // 
-            this.textBox6.Location = new System.Drawing.Point(126, 78);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(140, 20);
-            this.textBox6.TabIndex = 10;
+            this.tSumPay.Location = new System.Drawing.Point(126, 78);
+            this.tSumPay.Name = "tSumPay";
+            this.tSumPay.Size = new System.Drawing.Size(140, 20);
+            this.tSumPay.TabIndex = 10;
             // 
-            // textBox5
+            // tSumToPay
             // 
-            this.textBox5.Location = new System.Drawing.Point(126, 24);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(140, 20);
-            this.textBox5.TabIndex = 9;
+            this.tSumToPay.Location = new System.Drawing.Point(126, 24);
+            this.tSumToPay.Name = "tSumToPay";
+            this.tSumToPay.Size = new System.Drawing.Size(140, 20);
+            this.tSumToPay.TabIndex = 9;
             // 
             // label10
             // 
@@ -309,13 +309,13 @@ namespace CRM
             this.label9.TabIndex = 7;
             this.label9.Text = "Сумма оплаты";
             // 
-            // dateTimePicker2
+            // dtPay
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(126, 51);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(140, 20);
-            this.dateTimePicker2.TabIndex = 6;
+            this.dtPay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPay.Location = new System.Drawing.Point(126, 51);
+            this.dtPay.Name = "dtPay";
+            this.dtPay.Size = new System.Drawing.Size(140, 20);
+            this.dtPay.TabIndex = 6;
             // 
             // label8
             // 
@@ -329,10 +329,10 @@ namespace CRM
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.comboBox5);
-            this.groupBox4.Controls.Add(this.dateTimePicker3);
+            this.groupBox4.Controls.Add(this.cbTypeReq);
+            this.groupBox4.Controls.Add(this.dtReg);
             this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.comboBox4);
+            this.groupBox4.Controls.Add(this.cbUser);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Location = new System.Drawing.Point(290, 152);
             this.groupBox4.Name = "groupBox4";
@@ -350,21 +350,21 @@ namespace CRM
             this.label14.TabIndex = 8;
             this.label14.Text = "Тип обращения";
             // 
-            // comboBox5
+            // cbTypeReq
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(137, 77);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(142, 21);
-            this.comboBox5.TabIndex = 7;
+            this.cbTypeReq.FormattingEnabled = true;
+            this.cbTypeReq.Location = new System.Drawing.Point(137, 77);
+            this.cbTypeReq.Name = "cbTypeReq";
+            this.cbTypeReq.Size = new System.Drawing.Size(142, 21);
+            this.cbTypeReq.TabIndex = 7;
             // 
-            // dateTimePicker3
+            // dtReg
             // 
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(139, 51);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(140, 20);
-            this.dateTimePicker3.TabIndex = 6;
+            this.dtReg.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtReg.Location = new System.Drawing.Point(139, 51);
+            this.dtReg.Name = "dtReg";
+            this.dtReg.Size = new System.Drawing.Size(140, 20);
+            this.dtReg.TabIndex = 6;
             // 
             // label13
             // 
@@ -375,13 +375,13 @@ namespace CRM
             this.label13.TabIndex = 6;
             this.label13.Text = "Зарегистрировано";
             // 
-            // comboBox4
+            // cbUser
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(137, 24);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(142, 21);
-            this.comboBox4.TabIndex = 1;
+            this.cbUser.FormattingEnabled = true;
+            this.cbUser.Location = new System.Drawing.Point(137, 24);
+            this.cbUser.Name = "cbUser";
+            this.cbUser.Size = new System.Drawing.Size(142, 21);
+            this.cbUser.TabIndex = 1;
             // 
             // label12
             // 
@@ -394,7 +394,7 @@ namespace CRM
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.textBox7);
+            this.groupBox5.Controls.Add(this.tPrim);
             this.groupBox5.Location = new System.Drawing.Point(12, 299);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(563, 94);
@@ -402,49 +402,50 @@ namespace CRM
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Дополнительная информация";
             // 
-            // textBox7
+            // tPrim
             // 
-            this.textBox7.Location = new System.Drawing.Point(6, 20);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(551, 68);
-            this.textBox7.TabIndex = 0;
+            this.tPrim.Location = new System.Drawing.Point(6, 20);
+            this.tPrim.Multiline = true;
+            this.tPrim.Name = "tPrim";
+            this.tPrim.Size = new System.Drawing.Size(551, 68);
+            this.tPrim.TabIndex = 0;
             // 
-            // button1
+            // bSave
             // 
-            this.button1.Location = new System.Drawing.Point(13, 407);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bSave.Location = new System.Drawing.Point(13, 407);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(75, 23);
+            this.bSave.TabIndex = 9;
+            this.bSave.Text = "Сохранить";
+            this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
-            // button2
+            // bEdit
             // 
-            this.button2.Location = new System.Drawing.Point(94, 407);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Изменить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bEdit.Location = new System.Drawing.Point(94, 407);
+            this.bEdit.Name = "bEdit";
+            this.bEdit.Size = new System.Drawing.Size(75, 23);
+            this.bEdit.TabIndex = 10;
+            this.bEdit.Text = "Изменить";
+            this.bEdit.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // bPrint
             // 
-            this.button3.Location = new System.Drawing.Point(175, 407);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Печать";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bPrint.Location = new System.Drawing.Point(175, 407);
+            this.bPrint.Name = "bPrint";
+            this.bPrint.Size = new System.Drawing.Size(75, 23);
+            this.bPrint.TabIndex = 11;
+            this.bPrint.Text = "Печать";
+            this.bPrint.UseVisualStyleBackColor = true;
             // 
             // Card
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 442);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bPrint);
+            this.Controls.Add(this.bEdit);
+            this.Controls.Add(this.bSave);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -471,9 +472,9 @@ namespace CRM
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tClientPatron;
+        private System.Windows.Forms.TextBox tClentName;
+        private System.Windows.Forms.TextBox tClentSName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -481,34 +482,34 @@ namespace CRM
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtPlanDelivery;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbMaster;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbService;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbPayType;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tSumPay;
+        private System.Windows.Forms.TextBox tSumToPay;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtPay;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.ComboBox cbTypeReq;
+        private System.Windows.Forms.DateTimePicker dtReg;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbUser;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox tPrim;
+        private System.Windows.Forms.Button bSave;
+        private System.Windows.Forms.Button bEdit;
+        private System.Windows.Forms.Button bPrint;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbIsDone;
     }
 }
