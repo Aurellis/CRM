@@ -31,11 +31,11 @@ namespace CRM
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Masters));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tFastFilter = new System.Windows.Forms.TextBox();
+            this.bEdit = new System.Windows.Forms.Button();
+            this.bAdd = new System.Windows.Forms.Button();
+            this.dgList = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgList)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,39 +47,46 @@ namespace CRM
             this.label1.TabIndex = 9;
             this.label1.Text = "Быстрый поиск";
             // 
-            // textBox1
+            // tFastFilter
             // 
-            this.textBox1.Location = new System.Drawing.Point(286, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(92, 20);
-            this.textBox1.TabIndex = 8;
+            this.tFastFilter.Location = new System.Drawing.Point(286, 15);
+            this.tFastFilter.Name = "tFastFilter";
+            this.tFastFilter.Size = new System.Drawing.Size(92, 20);
+            this.tFastFilter.TabIndex = 8;
             // 
-            // button2
+            // bEdit
             // 
-            this.button2.Location = new System.Drawing.Point(93, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Редактировать";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bEdit.Location = new System.Drawing.Point(93, 12);
+            this.bEdit.Name = "bEdit";
+            this.bEdit.Size = new System.Drawing.Size(95, 23);
+            this.bEdit.TabIndex = 7;
+            this.bEdit.Text = "Редактировать";
+            this.bEdit.UseVisualStyleBackColor = true;
+            this.bEdit.Click += new System.EventHandler(this.bEdit_Click);
             // 
-            // button1
+            // bAdd
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bAdd.Location = new System.Drawing.Point(12, 12);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(75, 23);
+            this.bAdd.TabIndex = 6;
+            this.bAdd.Text = "Добавить";
+            this.bAdd.UseVisualStyleBackColor = true;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
-            // dataGridView1
+            // dgList
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(366, 417);
-            this.dataGridView1.TabIndex = 5;
+            this.dgList.AllowUserToAddRows = false;
+            this.dgList.AllowUserToDeleteRows = false;
+            this.dgList.AllowUserToOrderColumns = true;
+            this.dgList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgList.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgList.Location = new System.Drawing.Point(12, 53);
+            this.dgList.Name = "dgList";
+            this.dgList.ReadOnly = true;
+            this.dgList.Size = new System.Drawing.Size(366, 417);
+            this.dgList.TabIndex = 5;
             // 
             // Masters
             // 
@@ -87,16 +94,16 @@ namespace CRM
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 488);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tFastFilter);
+            this.Controls.Add(this.bEdit);
+            this.Controls.Add(this.bAdd);
+            this.Controls.Add(this.dgList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Masters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Список мастеров (все)";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,9 +112,9 @@ namespace CRM
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox tFastFilter;
+        private System.Windows.Forms.Button bEdit;
+        private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.DataGridView dgList;
     }
 }

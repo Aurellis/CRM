@@ -105,6 +105,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditMaster.Designer.cs">
+      <DependentUpon>AddEditMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Card.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     <Compile Include="Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddEditMaster.resx">
+      <DependentUpon>AddEditMaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Card.resx">
       <DependentUpon>Card.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,11 +212,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SQL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="maestro.ico" />
+    <Content Include="SQL\crm_base.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

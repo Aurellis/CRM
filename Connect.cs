@@ -14,11 +14,12 @@ namespace CRM
     {
         public static List<string> DataBases { get; internal set; }
         public static string UserName { get; private set; }
+
         public static int Point_ID { get; private set; }
+        public static Dictionary<string, string> Items { get; private set; }
 
         private static string serverName;
         private static string baseName;
-       
 
         internal static bool SettingsConnect(string _serverName, string _baseName = "")
         {
@@ -34,12 +35,12 @@ namespace CRM
             }
             else
             {
-                mySqlConn.ConnectionString = "Database="+ _baseName+";Data Source=" + _serverName + ";User Id=root;Password=1234";
+                mySqlConn.ConnectionString = "Database=" + _baseName + ";Data Source=" + _serverName + ";User Id=root;Password=1234";
             }
 
             try
             {
-                MySqlCommand sqlCommand = new MySqlCommand("show databases",mySqlConn);
+                MySqlCommand sqlCommand = new MySqlCommand("show databases", mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();
                 MySqlDataReader dataReader = sqlCommand.ExecuteReader();
@@ -48,7 +49,7 @@ namespace CRM
                 {
                     DataBases.Add(dataReader.GetString(0));
                 }
-                
+
 
                 dataReader.Close();
                 mySqlConn.Close();
@@ -57,7 +58,7 @@ namespace CRM
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(),"Ошибка");
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
                 return false;
             }
         }
@@ -65,13 +66,13 @@ namespace CRM
         internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = "Database=" + baseName + ";Data Source=" + serverName + ";User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
 
             try
             {
-                string addCardQuery = "call addcard('" + clientSName + "','" + clientSName + "','" + patron + "','" + tel + "','" + master+"','"+service+"','"+planDeliveryDat+"','"+user+"','"+typeReg+"',"+isDone.ToString()+",'"+dateReg+"',"+sumToPay+","+sumPay+",'"+datePay+"','"+payType+"','"+prim+"',"+point_ID+")";
+                string addCardQuery = $"call addcard('{clientSName}','{clientSName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}',{sumToPay},{sumPay},'{datePay}','{payType}','{prim}',{point_ID})";
 
-                 MessageBox.Show(addCardQuery,"Тестовый вывод sql");
+                //MessageBox.Show(addCardQuery,"Тестовый вывод sql");
                 MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();
@@ -81,7 +82,7 @@ namespace CRM
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Ошибка");
-               
+
             }
         }
 
@@ -95,18 +96,18 @@ namespace CRM
             {
                 return false;
             }
-            
+
         }
 
         private static bool SqlLogin(string login, string password)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
 
-            mySqlConn.ConnectionString = "Database=" + baseName + ";Data Source=" + serverName + ";User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
 
             try
             {
-                MySqlCommand sqlCommand = new MySqlCommand("select * from users where login ='"+login+"' and password ='"+password+"'", mySqlConn);
+                MySqlCommand sqlCommand = new MySqlCommand("select * from users where login ='" + login + "' and password ='" + password + "'", mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();
                 MySqlDataReader dataReader = sqlCommand.ExecuteReader();
@@ -124,10 +125,10 @@ namespace CRM
                 {
                     dataReader.Close();
                     mySqlConn.Close();
-                    MessageBox.Show("Ничего не найдено. Проверьте правильность ввода логина и пароля","Ошибка");
+                    MessageBox.Show("Ничего не найдено. Проверьте правильность ввода логина и пароля", "Ошибка");
                     return false;
                 }
-                
+
             }
 
             catch (Exception ex)
@@ -136,6 +137,61 @@ namespace CRM
                 return false;
             }
         }
+
+        internal static DataTable GetList(string source)
+        {
+            DataTable table = new DataTable();
+            MySqlConnection mySqlConn = new MySqlConnection();
+
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+
+            try
+            {
+                string sqlString = $"call getlist('{source}')";
+                mySqlConn.Open();
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlString, mySqlConn);
+                dataAdapter.Fill(table);
+                mySqlConn.Close();
+                return table;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
+                return table;
+            }
+        }
+
+        internal static void AddItemList(string source, string text1, string text2, string text3, string text4, string point, bool isActive, string urole)
+        {
+            MySqlConnection mySqlConn = new MySqlConnection();
+
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+
+            try
+            {
+                string sqlString = $"call additemlist('{source}','{text1}','{text2}','{text3}','{text4}','{point}','{isActive}','{urole}',)";
+                MySqlCommand sqlCommand = new MySqlCommand(sqlString, mySqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+                mySqlConn.Open();
+                sqlCommand.ExecuteNonQuery();
+                mySqlConn.Close();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
+            }
+        }
+
+        internal static void GetItem(string v)
+        {
+            Items = new Dictionary<string, string>();
+
+        }
+
     }
 
 }
+
+
