@@ -287,7 +287,6 @@ namespace CRM
             // 
             // tSumPay
             // 
-            this.tSumPay.Enabled = false;
             this.tSumPay.Location = new System.Drawing.Point(126, 78);
             this.tSumPay.Name = "tSumPay";
             this.tSumPay.Size = new System.Drawing.Size(140, 20);
@@ -295,7 +294,6 @@ namespace CRM
             // 
             // tSumToPay
             // 
-            this.tSumToPay.Enabled = false;
             this.tSumToPay.Location = new System.Drawing.Point(126, 24);
             this.tSumToPay.Name = "tSumToPay";
             this.tSumToPay.Size = new System.Drawing.Size(140, 20);

@@ -34,7 +34,25 @@ namespace CRM
         {
             if (tClentSName.Text != string.Empty && tClentName.Text != string.Empty && cbMaster.SelectedItem.ToString() != string.Empty && cbService.SelectedItem.ToString() != string.Empty && cbTypeReq.SelectedItem.ToString() != string.Empty)
             {
-                Connect.AddCard(tClentSName.Text, tClentName.Text, tClientPatron.Text, tClientTel.Text, cbMaster.SelectedItem.ToString(), cbService.SelectedItem.ToString(), dtPlanDelivery.Value.ToString(), cbUser.SelectedItem.ToString(), cbTypeReq.SelectedItem.ToString(), cbIsDone.Checked, dtReg.Value.ToString(), tSumToPay.Text, tSumPay.Text, dtPay.Value.ToString(), cbPayType.SelectedItem.ToString(), tPrim.Text);
+                Connect.AddCard(
+                                          tClentSName.Text, 
+                                          tClentName.Text, 
+                                          tClientPatron.Text, 
+                                          tClientTel.Text, 
+                                          cbMaster.SelectedItem.ToString(), 
+                                          cbService.SelectedItem.ToString(), 
+                                          dtPlanDelivery.Value.ToString("yyyy-MM-dd HH:mm:ss"), 
+                                          cbUser.SelectedItem.ToString(), 
+                                          cbTypeReq.SelectedItem.ToString(), 
+                                          cbIsDone.Checked, 
+                                          dtReg.Value.ToString("yyyy-MM-dd HH:mm:ss"), 
+                                          tSumToPay.Text, 
+                                          tSumPay.Text, 
+                                          dtPay.Value.ToString("yyyy-MM-dd HH:mm:ss"), 
+                                          cbPayType.SelectedItem.ToString(), 
+                                          tPrim.Text, 
+                                          Connect.Point_ID
+                                          );
             }
             else
             {

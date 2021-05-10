@@ -14,6 +14,7 @@ namespace CRM
     {
         public static List<string> DataBases { get; internal set; }
         public static string UserName { get; private set; }
+        public static int Point_ID { get; private set; }
 
         private static string serverName;
         private static string baseName;
@@ -61,30 +62,21 @@ namespace CRM
             }
         }
 
-        internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim)
+        internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
             mySqlConn.ConnectionString = "Database=" + baseName + ";Data Source=" + serverName + ";User Id=root;Password=1234";
 
             try
             {
-                string addCardQuery = "call addcard('" + clientSName + "','" + clientSName + "','" + patron + "','" + tel + "','" + master+"','"+service+"','"+planDeliveryDat+"','"+user+"','"+typeReg+"',"+isDone+",'"+dateReg+"',"+sumToPay+","+sumPay+",'"+datePay+"','"+payType+"','"+prim+"'";
+                string addCardQuery = "call addcard('" + clientSName + "','" + clientSName + "','" + patron + "','" + tel + "','" + master+"','"+service+"','"+planDeliveryDat+"','"+user+"','"+typeReg+"',"+isDone.ToString()+",'"+dateReg+"',"+sumToPay+","+sumPay+",'"+datePay+"','"+payType+"','"+prim+"',"+point_ID+")";
 
-                MessageBox.Show(addCardQuery,"Тестовый вывод sql");
-            //    MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
-            //    sqlCommand.CommandType = CommandType.Text;
-            //    mySqlConn.Open();
-            //    MySqlDataReader dataReader = sqlCommand.ExecuteReader();
-
-            //    while (dataReader.Read())
-            //    {
-            //        DataBases.Add(dataReader.GetString(0));
-            //    }
-
-
-            //    dataReader.Close();
-            //    mySqlConn.Close();
-            //    return true;
+                 MessageBox.Show(addCardQuery,"Тестовый вывод sql");
+                MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+                mySqlConn.Open();
+                sqlCommand.ExecuteNonQuery();
+                mySqlConn.Close();
             }
             catch (Exception ex)
             {
@@ -123,6 +115,7 @@ namespace CRM
                 {
                     dataReader.Read();
                     UserName = dataReader.GetString(4);
+                    Point_ID = dataReader.GetInt32(6);
                     dataReader.Close();
                     mySqlConn.Close();
                     return true;
