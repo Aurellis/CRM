@@ -11,25 +11,21 @@ namespace CRM
 {
     public partial class Card : Form
     {
+        private bool mode;
+
         public Card(bool createOrEdit)
         {
             InitializeComponent();
-
+            mode = createOrEdit;
             if (createOrEdit)
             {
-                
+               
             }
             else
             {
-                EditData();
+                
             }
         }
-
-        private void EditData()
-        {
-            throw new NotImplementedException();
-        }
-
         private void AddNewData()
         {
             if (tClentSName.Text != string.Empty && tClentName.Text != string.Empty && cbMaster.SelectedItem.ToString() != string.Empty && cbService.SelectedItem.ToString() != string.Empty && cbTypeReq.SelectedItem.ToString() != string.Empty)

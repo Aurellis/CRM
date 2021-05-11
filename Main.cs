@@ -12,13 +12,6 @@ namespace CRM
 {
     public partial class Main : Form
     {
-        //TimerCallback timerCallback = new TimerCallback(CheckDateTime);
-
-        //private static  void CheckDateTime(object state)
-        //{
-        //    lDateTime.Text = DateTime.Now.ToString();
-        //}
-
         public Main()
         {
             InitializeComponent();
@@ -28,7 +21,27 @@ namespace CRM
         {
             InitializeComponent();
             lFullName.Text = Connect.UserName;
-            
+
+            dgOrders.DataSource = Connect.GetList("card");
+
+            dgOrders.Columns[0].HeaderText = "Код";
+            dgOrders.Columns[1].HeaderText = "Номер заявки";
+            dgOrders.Columns[2].HeaderText = "Услуга";
+            dgOrders.Columns[3].HeaderText = "Мастер";
+            dgOrders.Columns[4].HeaderText = "Тип оплаты";
+            dgOrders.Columns[5].HeaderText = "Тип обращения";
+            dgOrders.Columns[6].HeaderText = "Зарегистрировал";
+            dgOrders.Columns[7].HeaderText = "Фамилия клиента";
+            dgOrders.Columns[8].HeaderText = "Имя клиента";
+            dgOrders.Columns[9].HeaderText = "Отчество клиента";
+            dgOrders.Columns[10].HeaderText = "Телефон клиента";
+            dgOrders.Columns[11].HeaderText = "Дата записи";
+            dgOrders.Columns[12].HeaderText = "Выполнено";
+            dgOrders.Columns[13].HeaderText = "Дата регистрации";
+            dgOrders.Columns[14].HeaderText = "Дата оплаты";
+            dgOrders.Columns[15].HeaderText = "К оплате";
+            dgOrders.Columns[16].HeaderText = "Оплачено";
+            dgOrders.Columns[17].HeaderText = "Примечание";
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -45,6 +58,15 @@ namespace CRM
         {
             Card card = new Card(true);
             card.ShowInTaskbar = false;
+            card.FormClosing += Card_FormClosing;
+            card.ShowDialog();
+        }       
+
+        private void bOpenCard_Click(object sender, EventArgs e)
+        {
+            Card card = new Card(false);
+            card.ShowInTaskbar = false; 
+            card.FormClosing += Card_FormClosing;
             card.ShowDialog();
         }
 
@@ -88,6 +110,11 @@ namespace CRM
             Points points = new Points();
             points.ShowInTaskbar = false;
             points.ShowDialog();
+        }
+
+        private void Card_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

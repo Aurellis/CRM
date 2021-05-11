@@ -123,6 +123,12 @@
     <Compile Include="AddEditService.Designer.cs">
       <DependentUpon>AddEditService.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditUser.Designer.cs">
+      <DependentUpon>AddEditUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Card.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditService.resx">
       <DependentUpon>AddEditService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditUser.resx">
+      <DependentUpon>AddEditUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Card.resx">
       <DependentUpon>Card.cs</DependentUpon>

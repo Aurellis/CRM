@@ -45,7 +45,7 @@ namespace CRM
             this.мастераToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.услугиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgOrders = new System.Windows.Forms.DataGridView();
             this.lFullName = new System.Windows.Forms.Label();
             this.lDateTime = new System.Windows.Forms.Label();
             this.bAddCard = new System.Windows.Forms.Button();
@@ -56,7 +56,7 @@ namespace CRM
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -94,20 +94,20 @@ namespace CRM
             // пользователиToolStripMenuItem
             // 
             this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.пользователиToolStripMenuItem.Text = "Пользователи";
             this.пользователиToolStripMenuItem.Click += new System.EventHandler(this.пользователиToolStripMenuItem_Click);
             // 
             // праваToolStripMenuItem
             // 
             this.праваToolStripMenuItem.Name = "праваToolStripMenuItem";
-            this.праваToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.праваToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.праваToolStripMenuItem.Text = "Права";
             // 
             // подразделенияToolStripMenuItem
             // 
             this.подразделенияToolStripMenuItem.Name = "подразделенияToolStripMenuItem";
-            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.подразделенияToolStripMenuItem.Text = "Подразделения";
             this.подразделенияToolStripMenuItem.Click += new System.EventHandler(this.подразделенияToolStripMenuItem_Click);
             // 
@@ -151,32 +151,37 @@ namespace CRM
             // мастераToolStripMenuItem
             // 
             this.мастераToolStripMenuItem.Name = "мастераToolStripMenuItem";
-            this.мастераToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.мастераToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.мастераToolStripMenuItem.Text = "Мастера";
             this.мастераToolStripMenuItem.Click += new System.EventHandler(this.мастераToolStripMenuItem_Click);
             // 
             // клиентыToolStripMenuItem
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.клиентыToolStripMenuItem_Click);
             // 
             // услугиToolStripMenuItem
             // 
             this.услугиToolStripMenuItem.Name = "услугиToolStripMenuItem";
-            this.услугиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.услугиToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.услугиToolStripMenuItem.Text = "Услуги";
             this.услугиToolStripMenuItem.Click += new System.EventHandler(this.услугиToolStripMenuItem_Click);
             // 
-            // dataGridView1
+            // dgOrders
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 67);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(777, 409);
-            this.dataGridView1.TabIndex = 1;
+            this.dgOrders.AllowUserToAddRows = false;
+            this.dgOrders.AllowUserToDeleteRows = false;
+            this.dgOrders.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrders.Location = new System.Drawing.Point(13, 67);
+            this.dgOrders.MultiSelect = false;
+            this.dgOrders.Name = "dgOrders";
+            this.dgOrders.ReadOnly = true;
+            this.dgOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgOrders.Size = new System.Drawing.Size(777, 409);
+            this.dgOrders.TabIndex = 1;
             // 
             // lFullName
             // 
@@ -213,6 +218,7 @@ namespace CRM
             this.bOpenCard.TabIndex = 5;
             this.bOpenCard.Text = "Открыть карточку заявки";
             this.bOpenCard.UseVisualStyleBackColor = true;
+            this.bOpenCard.Click += new System.EventHandler(this.bOpenCard_Click);
             // 
             // bPrint
             // 
@@ -268,7 +274,7 @@ namespace CRM
             this.Controls.Add(this.bAddCard);
             this.Controls.Add(this.lDateTime);
             this.Controls.Add(this.lFullName);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgOrders);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -278,7 +284,7 @@ namespace CRM
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,7 +301,7 @@ namespace CRM
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкаОтчетовToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgOrders;
         private System.Windows.Forms.Label lFullName;
         private System.Windows.Forms.Label lDateTime;
         private System.Windows.Forms.Button bAddCard;

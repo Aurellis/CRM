@@ -30,29 +30,11 @@ namespace CRM
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Masters));
-            this.label1 = new System.Windows.Forms.Label();
-            this.tFastFilter = new System.Windows.Forms.TextBox();
             this.bEdit = new System.Windows.Forms.Button();
             this.bAdd = new System.Windows.Forms.Button();
             this.dgList = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(194, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Быстрый поиск";
-            // 
-            // tFastFilter
-            // 
-            this.tFastFilter.Location = new System.Drawing.Point(286, 15);
-            this.tFastFilter.Name = "tFastFilter";
-            this.tFastFilter.Size = new System.Drawing.Size(92, 20);
-            this.tFastFilter.TabIndex = 8;
             // 
             // bEdit
             // 
@@ -94,8 +76,6 @@ namespace CRM
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 488);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tFastFilter);
             this.Controls.Add(this.bEdit);
             this.Controls.Add(this.bAdd);
             this.Controls.Add(this.dgList);
@@ -106,14 +86,10 @@ namespace CRM
             this.Text = "Список мастеров (все)";
             ((System.ComponentModel.ISupportInitialize)(this.dgList)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tFastFilter;
         private System.Windows.Forms.Button bEdit;
         private System.Windows.Forms.Button bAdd;
         private System.Windows.Forms.DataGridView dgList;
