@@ -10,56 +10,61 @@ using System.Windows.Forms;
 
 namespace CRM
 {
-    public partial class AddEditMaster : Form
+    public partial class AddEditService : Form
     {
-        private bool addOrEdit;
         private string code;
+        private bool addOrEdit;
         DataTable table = Connect.GetList("point");
 
-        public AddEditMaster()
+        public AddEditService()
         {
             InitializeComponent();
             addOrEdit = true;
-            
-
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 cbPoints.Items.Add(table.Rows[i][1].ToString());
             }
-       }
-
-        public AddEditMaster(string _code)
+        }
+        public AddEditService(string _code)
         {
             InitializeComponent();
+            addOrEdit = false;
+            code = _code;
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 cbPoints.Items.Add(table.Rows[i][1].ToString());
             }
             code = _code;
             addOrEdit = false;
-            Connect.GetItem("master",code);
+            Connect.GetItem("service", code);
             tCode.Text = Connect.Items["id"];
             tName.Text = Connect.Items["Name"];
-            tFullName.Text = Connect.Items["FullName"];
-            cbPoints.SelectedItem = Connect.Items["Point_ID"];
-            cbIsActive.Checked = Convert.ToBoolean(Int16.Parse(Connect.Items["isactive"]));
+            tPrice.Text = Connect.Items["Price"];
+            
         }
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            if (tName.Text != string.Empty && tFullName.Text != string.Empty && cbPoints.SelectedItem.ToString() != string.Empty)
+            if (tName.Text != string.Empty && tPrice.Text != string.Empty)
             {
-                if (addOrEdit)
+                double price;
+                if (Double.TryParse(tPrice.Text, out price))
                 {
-                    Connect.AddItem("master", tName.Text, tFullName.Text, null, null, cbPoints.SelectedItem.ToString(), Convert.ToInt16(cbIsActive.Checked), null);
-                    this.Close();
+                    if (addOrEdit)
+                    {
+                        Connect.AddItem("service", tName.Text, price.ToString(), null, null, cbPoints.SelectedItem.ToString(), 0, null);
+                        this.Close();
+                    }
+                    else
+                    {
+                        Connect.EditItem("service", code, tName.Text, price.ToString(), null, null, cbPoints.SelectedItem.ToString(), 0, null);
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    Connect.EditItem("master", code, tName.Text, tFullName.Text, null, null, cbPoints.SelectedItem.ToString(), Convert.ToInt16(cbIsActive.Checked), null);
-                    this.Close();
-                }
-                
+                    MessageBox.Show("Введите правильную стоимость!", "Ошибка");
+                }  
             }
             else
             {

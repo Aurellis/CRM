@@ -87,6 +87,7 @@ namespace CRM
             this.dgList.ReadOnly = true;
             this.dgList.Size = new System.Drawing.Size(366, 417);
             this.dgList.TabIndex = 5;
+            this.dgList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgList_CellClick);
             // 
             // Masters
             // 

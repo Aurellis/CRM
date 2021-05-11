@@ -11,7 +11,8 @@ namespace CRM
 {
     public partial class Masters : Form
     {
-         
+        private string code;
+
         public Masters()
         {
             InitializeComponent();
@@ -29,22 +30,37 @@ namespace CRM
         {
             AddEditMaster masters = new AddEditMaster();
             masters.ShowInTaskbar = false;
+            masters.FormClosing += Masters_FormClosing;
             masters.ShowDialog();
-            masters.FormClosed += Masters_FormClosed;            
+
         }
 
-        private void Masters_FormClosed(object sender, FormClosedEventArgs e)
+        private void Masters_FormClosing(object sender, FormClosingEventArgs e)
         {
+            dgList.DataSource = null;
             dgList.Rows.Clear();
             dgList.DataSource = Connect.GetList("master");
         }
 
         private void bEdit_Click(object sender, EventArgs e)
         {
-            AddEditMaster masters = new AddEditMaster(null);
-            masters.ShowInTaskbar = false;
-            masters.ShowDialog();
-            masters.FormClosed += Masters_FormClosed;
+            if (code != null)
+            {
+                AddEditMaster masters = new AddEditMaster(code);
+                masters.ShowInTaskbar = false;
+                masters.FormClosing += Masters_FormClosing;
+                masters.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Требуется выбрать строку в таблице", "Ошибка");
+            }
+
+        }
+
+        private void dgList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            code = dgList[0, dgList.CurrentRow.Index].Value.ToString();
         }
     }
 }

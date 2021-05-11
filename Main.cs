@@ -82,5 +82,12 @@ namespace CRM
             services.ShowInTaskbar = false;
             services.ShowDialog();
         }
+
+        private void подразделенияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Points points = new Points();
+            points.ShowInTaskbar = false;
+            points.ShowDialog();
+        }
     }
 }
