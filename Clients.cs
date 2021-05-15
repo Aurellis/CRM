@@ -11,6 +11,8 @@ namespace CRM
 {
     public partial class Clients : Form
     {
+        private string code;
+
         public Clients()
         {
             InitializeComponent();
@@ -23,12 +25,32 @@ namespace CRM
             dgList.Columns[4].HeaderText = "Телефон";
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
+     
+        private void bEdit_Click(object sender, EventArgs e)
         {
-            AddEditClent client = new AddEditClent();
+            if (code != null)
+            {
+                AddEditClient client = new AddEditClient(code);
             client.ShowInTaskbar = false;
-            //client.FormClosing += Masters_FormClosing;
+            client.FormClosing += Client_FormClosing; ;
             client.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Требуется выбрать строку в таблице", "Ошибка");
+            }
+        }
+
+        private void Client_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dgList.DataSource = null;
+            dgList.Rows.Clear();
+            dgList.DataSource = Connect.GetList("client");
+        }
+
+        private void dgList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            code = dgList[0, dgList.CurrentRow.Index].Value.ToString();
         }
     }
 }
