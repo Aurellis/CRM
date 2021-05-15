@@ -174,5 +174,54 @@ namespace CRM
                 card.ShowDialog();
             }
         }
+
+        private void tFastFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (tFastFilter.Text != string.Empty || tFastFilter.Text !="" || tFastFilter.Text != null)
+            {
+                List<int> index = new List<int>();
+                index.Clear();
+                for (int i = 0; i < dgOrders.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgOrders.Rows[i].Cells.Count; j++)
+                    {
+                        if (dgOrders.Rows[i].Cells[j].Value.ToString().Contains(tFastFilter.Text))
+                        {
+                            index.Add(dgOrders.Rows[i].Index);
+                            break;
+                        }
+
+                    }
+
+                }
+
+                for (int i = 0; i < dgOrders.Rows.Count; i++)
+                {
+                    for (int j = 0; j < index.Count; j++)
+                    {
+                       if (dgOrders.Rows[i].Index == index[j])
+                        {
+                            dgOrders.Rows[dgOrders.Rows[i].Index].Selected = true;
+                           dgOrders.Rows[dgOrders.Rows[i].Index].Visible = true;
+                            break;
+                        }
+                        else
+                        {
+                            dgOrders.CurrentCell = null;
+                            dgOrders.Rows[dgOrders.Rows[i].Index].Visible = false;
+                        }
+                    }
+                }
+                index.Clear();
+            }
+            else
+            {
+
+            }
+
+            
+
+
+        }
     }
 }

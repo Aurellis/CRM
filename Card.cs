@@ -48,7 +48,7 @@ namespace CRM
 
             if (code != null)
             {
-                mode = true;
+                mode = true;                
                 GetData(code);
                 tClentSName.Enabled = false;
                 tClentName.Enabled = false;
@@ -69,6 +69,7 @@ namespace CRM
                 bSave.Enabled = false;
 
             }
+            
             
         }
 
@@ -182,7 +183,7 @@ namespace CRM
 
         private void cbService_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mode && editState)
+            if (!mode && !editState)
             {
                 DataRow[] rows = service.Select($"Name='{cbService.SelectedItem.ToString()}'");
                 string id = rows[0][0].ToString();

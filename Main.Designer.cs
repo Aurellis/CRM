@@ -52,7 +52,7 @@ namespace CRM
             this.bOpenCard = new System.Windows.Forms.Button();
             this.bPrint = new System.Windows.Forms.Button();
             this.bFilter = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tFastFilter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
@@ -241,12 +241,13 @@ namespace CRM
             this.bFilter.UseVisualStyleBackColor = true;
             this.bFilter.Click += new System.EventHandler(this.bFilter_Click);
             // 
-            // textBox1
+            // tFastFilter
             // 
-            this.textBox1.Location = new System.Drawing.Point(648, 35);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(142, 20);
-            this.textBox1.TabIndex = 8;
+            this.tFastFilter.Location = new System.Drawing.Point(648, 35);
+            this.tFastFilter.Name = "tFastFilter";
+            this.tFastFilter.Size = new System.Drawing.Size(142, 20);
+            this.tFastFilter.TabIndex = 8;
+            this.tFastFilter.TextChanged += new System.EventHandler(this.tFastFilter_TextChanged);
             // 
             // label3
             // 
@@ -269,7 +270,7 @@ namespace CRM
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 501);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tFastFilter);
             this.Controls.Add(this.bFilter);
             this.Controls.Add(this.bPrint);
             this.Controls.Add(this.bOpenCard);
@@ -310,7 +311,7 @@ namespace CRM
         private System.Windows.Forms.Button bOpenCard;
         private System.Windows.Forms.Button bPrint;
         private System.Windows.Forms.Button bFilter;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tFastFilter;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
