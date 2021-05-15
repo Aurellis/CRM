@@ -183,6 +183,7 @@ namespace CRM
             this.dgOrders.Size = new System.Drawing.Size(777, 409);
             this.dgOrders.TabIndex = 1;
             this.dgOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrders_CellClick);
+            this.dgOrders.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgOrders_CellMouseDoubleClick);
             // 
             // lFullName
             // 

@@ -17,6 +17,16 @@ namespace CRM
         public Main()
         {
             InitializeComponent();
+            if (code == null)
+            {
+                bOpenCard.Enabled = false;
+            }
+            else
+            {
+                bOpenCard.Enabled = true;
+            }
+
+            
         }
 
         public Main(string _login, string _password, string _server, string _database)
@@ -152,6 +162,17 @@ namespace CRM
         {
             code = dgOrders[0, dgOrders.CurrentRow.Index].Value.ToString();
             bOpenCard.Enabled = true;
+        }
+
+        private void dgOrders_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (code != null)
+            {
+                Card card = new Card(code);
+                card.ShowInTaskbar = false;
+                card.FormClosing += Card_FormClosing;
+                card.ShowDialog();
+            }
         }
     }
 }

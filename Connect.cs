@@ -190,10 +190,10 @@ namespace CRM
 
             try
             {
-                string addCardQuery = $"call updatecard('{clientSName}','{clientSName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}','{sumToPay}','{sumPay}','{datePay}','{payType}','{prim}','{point_ID}','{code}')";
+                string saveCardQuery = $"call updatecard('{clientSName}','{clientSName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}','{sumToPay}','{sumPay}','{datePay}','{payType}','{prim}','{point_ID}','{code}')";
 
-                MessageBox.Show(addCardQuery, "Тестовый вывод sql");
-                MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
+                //MessageBox.Show(addCardQuery, "Тестовый вывод sql");
+                MySqlCommand sqlCommand = new MySqlCommand(saveCardQuery, mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();
                 sqlCommand.ExecuteNonQuery();

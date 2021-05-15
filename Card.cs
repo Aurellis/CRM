@@ -23,7 +23,7 @@ namespace CRM
         public Card(string code)
         {
             InitializeComponent();
-            bEdit.Enabled = false;
+            //bEdit.Enabled = false;
             id = code;
             for (int i = 0; i < service.Rows.Count; i++)
             {
@@ -153,6 +153,8 @@ namespace CRM
             cbTypeReq.Enabled = false;
             tPrim.Enabled = false;
             bSave.Enabled = false;
+            bEdit.Enabled = true;
+            bPrint.Enabled = true;
 
         }
 
@@ -196,6 +198,8 @@ namespace CRM
         private void bEdit_Click(object sender, EventArgs e)
         {
             editState = true;
+            bEdit.Enabled = false;
+            bPrint.Enabled = false;
 
             tClentSName.Enabled = true;
             tClentName.Enabled = true;
