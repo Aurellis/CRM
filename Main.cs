@@ -57,7 +57,7 @@ namespace CRM
 
         private void bAddCard_Click(object sender, EventArgs e)
         {
-            Card card = new Card();
+            Card card = new Card(null);
             card.ShowInTaskbar = false;
             card.FormClosing += Card_FormClosing;
             card.ShowDialog();
@@ -151,6 +151,7 @@ namespace CRM
         private void dgOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             code = dgOrders[0, dgOrders.CurrentRow.Index].Value.ToString();
+            bOpenCard.Enabled = true;
         }
     }
 }

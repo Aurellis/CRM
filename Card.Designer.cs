@@ -433,6 +433,7 @@ namespace CRM
             this.bEdit.TabIndex = 10;
             this.bEdit.Text = "Изменить";
             this.bEdit.UseVisualStyleBackColor = true;
+            this.bEdit.Click += new System.EventHandler(this.bEdit_Click);
             // 
             // bPrint
             // 

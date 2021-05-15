@@ -58,7 +58,7 @@ CREATE TABLE `masters` (
   `Point_ID` int DEFAULT NULL,
   `isactive` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `masters` (
 
 LOCK TABLES `masters` WRITE;
 /*!40000 ALTER TABLE `masters` DISABLE KEYS */;
+INSERT INTO `masters` VALUES (1,'gdfgdfghfgh','fghfghfgh',NULL,1);
 /*!40000 ALTER TABLE `masters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +144,7 @@ CREATE TABLE `points` (
   `Name` varchar(45) NOT NULL,
   `Prim` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,6 +153,7 @@ CREATE TABLE `points` (
 
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
+INSERT INTO `points` VALUES (1,'Основная точка','Доп инфо');
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +217,7 @@ CREATE TABLE `services` (
   `Point_ID` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,6 +226,7 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
+INSERT INTO `services` VALUES (1,'стрижка','250,5',NULL);
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +245,7 @@ CREATE TABLE `users` (
   `FullName` varchar(128) DEFAULT NULL,
   `Role_Id` int NOT NULL,
   `Point_Id` int NOT NULL,
-  `isactive` tinyint DEFAULT NULL,
+  `isactive` tinyint DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `Login_UNIQUE` (`Login`),
   UNIQUE KEY `id_UNIQUE` (`id`)
@@ -255,7 +258,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','1234','Администратор','Администратор',1,0,NULL);
+INSERT INTO `users` VALUES (1,'admin','1234','Администратор','Администратор',1,0,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,17 +388,17 @@ if(target = 'master') then
     select name, fullname, point_id, isactive;
 end if;
 
-if(target = 'clients') then
+if(target = 'client') then
 	INSERT INTO clients(surname, name, patronymic, tel)
 	select name, fullname, patron, tel;
 end if;
 
-if(target = 'points') then
+if(target = 'point') then
 INSERT INTO points(Name, Prim)
 select name, fullname;
 end if;
 
-if(target = 'users') then
+if(target = 'user') then
 	set role_id = (select id from roles where name = urole);
 	set point_id = (select id from points where name = tpoint);
 	INSERT INTO users(Login, Password, UserName, FullName, Role_Id, Point_Id, isactive)
@@ -405,6 +408,12 @@ end if;
 if(target = 'role') then
 	INSERT INTO roles(name)
 	select name;
+end if;
+
+if(target = 'service') then
+set point_id = (select id from points where name = tpoint);
+	INSERT INTO services(Name, Price, Point_ID)
+	select name, fullname, point_id;
 end if;
 
 END ;;
@@ -488,6 +497,104 @@ if(target = 'role') then
 	WHERE id = target_id;
 end if;
 
+if(target = 'service') then
+	set point_id = (select id from points where name = tpoint);
+	UPDATE services
+	SET
+	Name = name,
+	Price = fullname,
+	Point_ID = point_id
+WHERE id = target_id;
+
+end if;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getcard` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getcard`(card_id int)
+BEGIN
+
+SELECT orders.id, 
+       orders.number, 
+       services.name, 
+       masters.name, 
+       paytype.name, 
+       requesttype.name, 
+       users.username, 
+       clients.surname, 
+       clients.name, 
+       clients.patronymic, 
+       clients.tel, 
+       orders.datedelivery, 
+       orders.isdone, 
+       orders.datereg, 
+       orders.datepay, 
+       orders.forpay, 
+       orders.paysum, 
+       orders.prim
+FROM orders
+left join services on services.id = orders.service_id
+left join masters on masters.id = orders.master_id
+left join paytype on paytype.id = orders.paytype_id
+left join requesttype on requesttype.id = orders.reqtype_id
+left join users on users.id = orders.user_id
+left join clients on clients.id = orders.client_id
+where orders.id in (case when card_id = 0
+				 then (select id from orders)
+                 when card_id <> 0
+                 then card_id
+			 end);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getitem` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getitem`(target varchar(128), target_id int)
+BEGIN
+
+if(target = 'master') then
+	select * from masters where id = target_id;
+end if;
+if(target = 'client') then
+	select * from clients where id = target_id;
+end if;
+if(target = 'point') then
+	select * from points where id = target_id;
+end if;
+if(target = 'role') then
+	select * from roles where id = target_id;
+end if;
+if(target = 'service') then
+	select * from services where id = target_id;
+end if;
+if(target = 'user') then
+	select * from users where id = target_id;
+end if;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -525,6 +632,10 @@ end if;
 if(target = 'user') then
 	select * from users;
 end if;
+if(target = 'card') then
+	call getcard(0);
+end if;
+
 
 END ;;
 DELIMITER ;
@@ -542,4 +653,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-10  9:31:33
+-- Dump completed on 2021-05-11 12:17:23

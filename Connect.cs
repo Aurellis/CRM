@@ -72,7 +72,7 @@ namespace CRM
             {
                 string addCardQuery = $"call addcard('{clientSName}','{clientSName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}','{sumToPay}','{sumPay}','{datePay}','{payType}','{prim}','{point_ID}')";
 
-                MessageBox.Show(addCardQuery,"Тестовый вывод sql");
+                //MessageBox.Show(addCardQuery,"Тестовый вывод sql");
                 MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();
@@ -180,6 +180,29 @@ namespace CRM
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Ошибка");
+            }
+        }
+
+        internal static void SaveCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID, string code)
+        {
+            MySqlConnection mySqlConn = new MySqlConnection();
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+
+            try
+            {
+                string addCardQuery = $"call updatecard('{clientSName}','{clientSName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}','{sumToPay}','{sumPay}','{datePay}','{payType}','{prim}','{point_ID}','{code}')";
+
+                MessageBox.Show(addCardQuery, "Тестовый вывод sql");
+                MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+                mySqlConn.Open();
+                sqlCommand.ExecuteNonQuery();
+                mySqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
+
             }
         }
 

@@ -12,16 +12,19 @@ namespace CRM
     public partial class Card : Form
     {
         private bool mode = false;
+        string id;
         DataTable service = Connect.GetList("service");
         DataTable master = Connect.GetList("master");
         DataTable user = Connect.GetList("user");
         DataTable reqtype = Connect.GetList("reqtype");
         DataTable paytype = Connect.GetList("paytype");
+        private bool editState;
 
-        public Card(string code = null)
+        public Card(string code)
         {
             InitializeComponent();
-
+            bEdit.Enabled = false;
+            id = code;
             for (int i = 0; i < service.Rows.Count; i++)
             {
                 cbService.Items.Add(service.Rows[i][1].ToString());
@@ -47,6 +50,24 @@ namespace CRM
             {
                 mode = true;
                 GetData(code);
+                tClentSName.Enabled = false;
+                tClentName.Enabled = false;
+                tClientPatron.Enabled = false;
+                tClientTel.Enabled = false;
+                cbService.Enabled = false;
+                cbMaster.Enabled = false;
+                dtPlanDelivery.Enabled = false;
+                cbIsDone.Enabled = false;
+                tSumToPay.Enabled = false;
+                dtPay.Enabled = false;
+                tSumPay.Enabled = false;
+                cbPayType.Enabled = false;
+                cbUser.Enabled = false;
+                dtReg.Enabled = false;
+                cbTypeReq.Enabled = false;
+                tPrim.Enabled = false;
+                bSave.Enabled = false;
+
             }
             
         }
@@ -114,20 +135,85 @@ namespace CRM
             {
                 AddNewData();
             }
-            
+
+            tClentSName.Enabled = false;
+            tClentName.Enabled = false;
+            tClientPatron.Enabled = false;
+            tClientTel.Enabled = false;
+            cbService.Enabled = false;
+            cbMaster.Enabled = false;
+            dtPlanDelivery.Enabled = false;
+            cbIsDone.Enabled = false;
+            tSumToPay.Enabled = false;
+            dtPay.Enabled = false;
+            tSumPay.Enabled = false;
+            cbPayType.Enabled = false;
+            cbUser.Enabled = false;
+            dtReg.Enabled = false;
+            cbTypeReq.Enabled = false;
+            tPrim.Enabled = false;
+            bSave.Enabled = false;
+
         }
 
         private void SaveData()
         {
-            throw new NotImplementedException();
+            Connect.SaveCard(tClentSName.Text,
+                                          tClentName.Text,
+                                          tClientPatron.Text,
+                                          tClientTel.Text,
+                                          cbMaster.SelectedItem.ToString(),
+                                          cbService.SelectedItem.ToString(),
+                                          dtPlanDelivery.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                                          cbUser.SelectedItem.ToString(),
+                                          cbTypeReq.SelectedItem.ToString(),
+                                          cbIsDone.Checked,
+                                          dtReg.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                                          tSumToPay.Text.Replace(',', '.'),
+                                          tSumPay.Text.Replace(',', '.'),
+                                          dtPay.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+                                          cbPayType.SelectedItem.ToString(),
+                                          tPrim.Text,
+                                          Connect.Point_ID,
+                                          id);
         }
 
         private void cbService_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataRow[] rows = service.Select($"Name='{cbService.SelectedItem.ToString()}'");
-            string id = rows[0][0].ToString();
-            Connect.GetItem("service", id);
-            tSumToPay.Text = Connect.Items["Price"];
+            if (mode && editState)
+            {
+                DataRow[] rows = service.Select($"Name='{cbService.SelectedItem.ToString()}'");
+                string id = rows[0][0].ToString();
+                Connect.GetItem("service", id);
+                tSumToPay.Text = Connect.Items["Price"];
+            }
+            else
+            {
+
+            }
+        }
+
+        private void bEdit_Click(object sender, EventArgs e)
+        {
+            editState = true;
+
+            tClentSName.Enabled = true;
+            tClentName.Enabled = true;
+            tClientPatron.Enabled = true;
+            tClientTel.Enabled = true;
+            cbService.Enabled = true;
+            cbMaster.Enabled = true;
+            dtPlanDelivery.Enabled = true;
+            cbIsDone.Enabled = true;
+            tSumToPay.Enabled = false;
+            dtPay.Enabled = true;
+            tSumPay.Enabled = true;
+            cbPayType.Enabled = true;
+            cbUser.Enabled = true;
+            dtReg.Enabled = true;
+            cbTypeReq.Enabled = true;
+            tPrim.Enabled = true;
+            bSave.Enabled = true;
         }
     }
 }
