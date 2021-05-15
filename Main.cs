@@ -26,7 +26,7 @@ namespace CRM
                 bOpenCard.Enabled = true;
             }
 
-            
+
         }
 
         public Main(string _login, string _password, string _server, string _database)
@@ -71,7 +71,7 @@ namespace CRM
             card.ShowInTaskbar = false;
             card.FormClosing += Card_FormClosing;
             card.ShowDialog();
-        }       
+        }
 
         private void bOpenCard_Click(object sender, EventArgs e)
         {
@@ -84,9 +84,9 @@ namespace CRM
             }
             else
             {
-                MessageBox.Show("Выберите заявку из списка.","Ошибка!");
+                MessageBox.Show("Выберите заявку из списка.", "Ошибка!");
             }
-            
+
         }
 
         private void bFilter_Click(object sender, EventArgs e)
@@ -177,32 +177,17 @@ namespace CRM
 
         private void tFastFilter_TextChanged(object sender, EventArgs e)
         {
-            if (tFastFilter.Text != string.Empty || tFastFilter.Text !="" || tFastFilter.Text != null)
+            if (tFastFilter.Text != "")
             {
-                List<int> index = new List<int>();
-                index.Clear();
+                
                 for (int i = 0; i < dgOrders.Rows.Count; i++)
                 {
                     for (int j = 0; j < dgOrders.Rows[i].Cells.Count; j++)
                     {
                         if (dgOrders.Rows[i].Cells[j].Value.ToString().Contains(tFastFilter.Text))
                         {
-                            index.Add(dgOrders.Rows[i].Index);
-                            break;
-                        }
-
-                    }
-
-                }
-
-                for (int i = 0; i < dgOrders.Rows.Count; i++)
-                {
-                    for (int j = 0; j < index.Count; j++)
-                    {
-                       if (dgOrders.Rows[i].Index == index[j])
-                        {
-                            dgOrders.Rows[dgOrders.Rows[i].Index].Selected = true;
-                           dgOrders.Rows[dgOrders.Rows[i].Index].Visible = true;
+                            dgOrders.CurrentCell = null;
+                            dgOrders.Rows[dgOrders.Rows[i].Index].Visible = true;
                             break;
                         }
                         else
@@ -212,16 +197,16 @@ namespace CRM
                         }
                     }
                 }
-                index.Clear();
             }
             else
             {
-
+                for (int i = 0; i < dgOrders.Rows.Count; i++)
+                {
+                    dgOrders.CurrentCell = null;
+                    dgOrders.Rows[dgOrders.Rows[i].Index].Visible = true;                    
+                }
             }
-
-            
-
-
         }
     }
 }
+   
