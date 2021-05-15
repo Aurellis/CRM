@@ -29,7 +29,7 @@ CREATE TABLE `clients` (
   `patronymic` varchar(128) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Иванов','Иванов','Иванович','89000000000');
+INSERT INTO `clients` VALUES (1,'Иванов','Иванов','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +93,7 @@ CREATE TABLE `orders` (
   `prim` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание');
+INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,'');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -525,7 +525,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getcard`(card_id int)
 BEGIN
-
+if (card_id <> 0) then
 SELECT orders.id, 
        services.name as service, 
        masters.name as master, 
@@ -550,11 +550,33 @@ left join paytype on paytype.id = orders.paytype_id
 left join requesttype on requesttype.id = orders.reqtype_id
 left join users on users.id = orders.user_id
 left join clients on clients.id = orders.client_id
-where orders.id in (case when card_id = 0
-				 then (select id from orders)
-                 when card_id <> 0
-                 then card_id
-			 end);
+where orders.id = card_id;
+else
+SELECT orders.id, 
+       services.name as service, 
+       masters.name as master, 
+       paytype.name as paytype, 
+       requesttype.name as requesttype, 
+       users.username as user, 
+       clients.surname as family, 
+       clients.name as clientname, 
+       clients.patronymic as patron, 
+       clients.tel as tel, 
+       orders.datedelivery, 
+       orders.isdone, 
+       orders.datereg, 
+       orders.datepay, 
+       orders.forpay, 
+       orders.paysum, 
+       orders.prim
+FROM orders
+left join services on services.id = orders.service_id
+left join masters on masters.id = orders.master_id
+left join paytype on paytype.id = orders.paytype_id
+left join requesttype on requesttype.id = orders.reqtype_id
+left join users on users.id = orders.user_id
+left join clients on clients.id = orders.client_id;
+end if;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -734,4 +756,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-15 12:56:45
+-- Dump completed on 2021-05-15 15:17:10
