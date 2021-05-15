@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `crm_base` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `crm_base`;
 -- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: crm_base
@@ -31,7 +29,7 @@ CREATE TABLE `clients` (
   `patronymic` varchar(128) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +38,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Иванов','Иван','Иванович','89005556633'),(2,'werwerwe','werwerwe','rwerwer','89000000000');
+INSERT INTO `clients` VALUES (1,'Иванов','Иванов','Иванович','89000000000');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +65,7 @@ CREATE TABLE `masters` (
 
 LOCK TABLES `masters` WRITE;
 /*!40000 ALTER TABLE `masters` DISABLE KEYS */;
-INSERT INTO `masters` VALUES (1,'gdfgdfghfgh','fghfghfgh',NULL,1);
+INSERT INTO `masters` VALUES (1,'Кожкина','Кожкина Елена',NULL,1);
 /*!40000 ALTER TABLE `masters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +78,6 @@ DROP TABLE IF EXISTS `orders`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `number` int NOT NULL,
   `service_id` int NOT NULL,
   `master_id` int NOT NULL,
   `paytype_id` int NOT NULL,
@@ -95,9 +92,8 @@ CREATE TABLE `orders` (
   `paysum` float DEFAULT NULL,
   `prim` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `number_UNIQUE` (`number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,6 +102,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +117,7 @@ CREATE TABLE `paytype` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,6 +126,7 @@ CREATE TABLE `paytype` (
 
 LOCK TABLES `paytype` WRITE;
 /*!40000 ALTER TABLE `paytype` DISABLE KEYS */;
+INSERT INTO `paytype` VALUES (1,'Наличная'),(2,'Безналичная');
 /*!40000 ALTER TABLE `paytype` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +166,7 @@ CREATE TABLE `requesttype` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,6 +175,7 @@ CREATE TABLE `requesttype` (
 
 LOCK TABLES `requesttype` WRITE;
 /*!40000 ALTER TABLE `requesttype` DISABLE KEYS */;
+INSERT INTO `requesttype` VALUES (1,'Личное'),(2,'Телефонное');
 /*!40000 ALTER TABLE `requesttype` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,16 +527,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getcard`(card_id int)
 BEGIN
 
 SELECT orders.id, 
-       orders.number, 
-       services.name, 
-       masters.name, 
-       paytype.name, 
-       requesttype.name, 
-       users.username, 
-       clients.surname, 
-       clients.name, 
-       clients.patronymic, 
-       clients.tel, 
+       services.name as service, 
+       masters.name as master, 
+       paytype.name as paytype, 
+       requesttype.name as requesttype, 
+       users.username as user, 
+       clients.surname as family, 
+       clients.name as clientname, 
+       clients.patronymic as patron, 
+       clients.tel as tel, 
        orders.datedelivery, 
        orders.isdone, 
        orders.datereg, 
@@ -594,6 +592,9 @@ end if;
 if(target = 'user') then
 	select * from users where id = target_id;
 end if;
+if(target = 'card') then
+	call getcard(target_id);
+end if;
 
 END ;;
 DELIMITER ;
@@ -635,6 +636,86 @@ end if;
 if(target = 'card') then
 	call getcard(0);
 end if;
+if(target = 'reqtype') then
+	select * from requesttype;
+end if;
+if(target = 'paytype') then
+	select * from paytype;
+end if;
+
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updatecard` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatecard`(in vsurname varchar(128), 
+               vname varchar(128), 
+               vpatronymic varchar(128), 
+               vtel varchar(20), 
+               vmaster varchar(128), 
+               vservice varchar(128),
+               vplandat datetime,
+               vuser varchar(128),
+               vtypereg varchar(128),
+               visdone boolean,
+               vdatereg datetime,
+               vsumtopay float,
+               vsumpay float,
+               vdatepay datetime,
+               vpaytype varchar(128),
+               vprim varchar(256),
+               vpoint_id int,
+               cardid int)
+BEGIN
+
+declare service_id int;
+declare master_id  int;
+declare paytype_id int;
+declare reqtype_id int;
+declare user_id int;
+declare plandat datetime;
+declare regdat datetime;
+declare paydat datetime;
+
+set service_id = (select id from services     where name     = vservice);
+set master_id  = (select id from masters      where name     = vmaster);
+set paytype_id = (select id from paytype      where name     = vpaytype); 
+set reqtype_id = (select id from requesttype  where name     = vtypereg);
+set user_id    = (select id from users        where username = vuser);
+set plandat = (select replace(vplandat,'.','-'));
+set regdat = (select replace(vdatereg,'.','-'));
+set paydat = (select replace(vdatepay,'.','-'));
+
+call addclient(vsurname, vname, vpatronymic, vtel, @client_id);
+
+UPDATE `crm_base`.`orders`
+SET
+`service_id` = service_id,
+`master_id` = master_id,
+`paytype_id` = paytype_id,
+`reqtype_id` = reqtype_id,
+`user_id` = user_id,
+`client_id` =  @client_id,
+`datedelivery` = plandat,
+`isdone` = visdone,
+`datereg` = regdat,
+`datepay` = paydat,
+`forpay` = vsumtopay,
+`paysum` = vsumpay,
+`prim` = vprim
+WHERE `id` = cardid;
 
 
 END ;;
@@ -653,4 +734,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-11 12:17:23
+-- Dump completed on 2021-05-15 12:56:45
