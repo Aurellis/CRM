@@ -51,7 +51,6 @@ namespace CRM
             this.bAddCard = new System.Windows.Forms.Button();
             this.bOpenCard = new System.Windows.Forms.Button();
             this.bPrint = new System.Windows.Forms.Button();
-            this.bFilter = new System.Windows.Forms.Button();
             this.tFastFilter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -231,16 +230,6 @@ namespace CRM
             this.bPrint.Text = "Печать";
             this.bPrint.UseVisualStyleBackColor = true;
             // 
-            // bFilter
-            // 
-            this.bFilter.Location = new System.Drawing.Point(323, 27);
-            this.bFilter.Name = "bFilter";
-            this.bFilter.Size = new System.Drawing.Size(95, 34);
-            this.bFilter.TabIndex = 7;
-            this.bFilter.Text = "Поиск по параметрам";
-            this.bFilter.UseVisualStyleBackColor = true;
-            this.bFilter.Click += new System.EventHandler(this.bFilter_Click);
-            // 
             // tFastFilter
             // 
             this.tFastFilter.Location = new System.Drawing.Point(648, 35);
@@ -271,7 +260,6 @@ namespace CRM
             this.ClientSize = new System.Drawing.Size(802, 501);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tFastFilter);
-            this.Controls.Add(this.bFilter);
             this.Controls.Add(this.bPrint);
             this.Controls.Add(this.bOpenCard);
             this.Controls.Add(this.bAddCard);
@@ -310,7 +298,6 @@ namespace CRM
         private System.Windows.Forms.Button bAddCard;
         private System.Windows.Forms.Button bOpenCard;
         private System.Windows.Forms.Button bPrint;
-        private System.Windows.Forms.Button bFilter;
         private System.Windows.Forms.TextBox tFastFilter;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;

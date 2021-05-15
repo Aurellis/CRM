@@ -70,7 +70,7 @@ namespace CRM
 
             try
             {
-                string addCardQuery = $"call addcard('{clientSName}','{clientSName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}','{sumToPay}','{sumPay}','{datePay}','{payType}','{prim}','{point_ID}')";
+                string addCardQuery = $"call addcard('{clientSName}','{clientName}','{patron}','{tel}','{master}','{service}','{planDeliveryDat}','{user}','{typeReg}',{isDone.ToString()},'{dateReg}','{sumToPay}','{sumPay}','{datePay}','{payType}','{prim}','{point_ID}')";
 
                 //MessageBox.Show(addCardQuery,"Тестовый вывод sql");
                 MySqlCommand sqlCommand = new MySqlCommand(addCardQuery, mySqlConn);

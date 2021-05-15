@@ -89,13 +89,6 @@ namespace CRM
 
         }
 
-        private void bFilter_Click(object sender, EventArgs e)
-        {
-            Filter filter = new Filter();
-            filter.ShowInTaskbar = false;
-            filter.ShowDialog();
-        }
-
         private void пользователиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Users users = new Users();
