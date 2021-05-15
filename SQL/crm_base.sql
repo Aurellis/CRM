@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `crm_base` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `crm_base`;
 -- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: crm_base
@@ -29,7 +31,7 @@ CREATE TABLE `clients` (
   `patronymic` varchar(128) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +40,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Иванов','Иванов','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000');
+INSERT INTO `clients` VALUES (1,'Иванов','Иван','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000'),(3,'Петров','Петров','','89000000000');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +95,7 @@ CREATE TABLE `orders` (
   `prim` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +104,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,'');
+INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,''),(3,1,1,1,1,1,3,'2021-05-15 17:15:23',0,'2021-05-15 17:15:23','2021-05-15 17:15:23',250.5,0,'ываываыва');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,11 +427,11 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edititem`(target varchar(128), 
 							 target_id int,
@@ -456,7 +458,7 @@ if(target = 'master') then
    WHERE `id` = target_id;
 end if;
 
-if(target = 'clients') then
+if(target = 'client') then
 	UPDATE clients
 	SET
 	surname    = name,
@@ -756,4 +758,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-15 15:17:10
+-- Dump completed on 2021-05-15 18:41:29

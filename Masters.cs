@@ -55,7 +55,6 @@ namespace CRM
             {
                 MessageBox.Show("Требуется выбрать строку в таблице", "Ошибка");
             }
-
         }
 
         private void dgList_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -285,6 +285,7 @@ namespace CRM
             this.tSumPay.Name = "tSumPay";
             this.tSumPay.Size = new System.Drawing.Size(140, 20);
             this.tSumPay.TabIndex = 10;
+            this.tSumPay.Text = "0";
             // 
             // tSumToPay
             // 
