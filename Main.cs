@@ -12,6 +12,8 @@ namespace CRM
 {
     public partial class Main : Form
     {
+        private string code;
+
         public Main()
         {
             InitializeComponent();
@@ -24,24 +26,23 @@ namespace CRM
 
             dgOrders.DataSource = Connect.GetList("card");
 
-            dgOrders.Columns[0].HeaderText = "Код";
-            dgOrders.Columns[1].HeaderText = "Номер заявки";
-            dgOrders.Columns[2].HeaderText = "Услуга";
-            dgOrders.Columns[3].HeaderText = "Мастер";
-            dgOrders.Columns[4].HeaderText = "Тип оплаты";
-            dgOrders.Columns[5].HeaderText = "Тип обращения";
-            dgOrders.Columns[6].HeaderText = "Зарегистрировал";
-            dgOrders.Columns[7].HeaderText = "Фамилия клиента";
-            dgOrders.Columns[8].HeaderText = "Имя клиента";
-            dgOrders.Columns[9].HeaderText = "Отчество клиента";
-            dgOrders.Columns[10].HeaderText = "Телефон клиента";
-            dgOrders.Columns[11].HeaderText = "Дата записи";
-            dgOrders.Columns[12].HeaderText = "Выполнено";
-            dgOrders.Columns[13].HeaderText = "Дата регистрации";
-            dgOrders.Columns[14].HeaderText = "Дата оплаты";
-            dgOrders.Columns[15].HeaderText = "К оплате";
-            dgOrders.Columns[16].HeaderText = "Оплачено";
-            dgOrders.Columns[17].HeaderText = "Примечание";
+            dgOrders.Columns[0].HeaderText = "Номер заявки";
+            dgOrders.Columns[1].HeaderText = "Услуга";
+            dgOrders.Columns[2].HeaderText = "Мастер";
+            dgOrders.Columns[3].HeaderText = "Тип оплаты";
+            dgOrders.Columns[4].HeaderText = "Тип обращения";
+            dgOrders.Columns[5].HeaderText = "Зарегистрировал";
+            dgOrders.Columns[6].HeaderText = "Фамилия клиента";
+            dgOrders.Columns[7].HeaderText = "Имя клиента";
+            dgOrders.Columns[8].HeaderText = "Отчество клиента";
+            dgOrders.Columns[9].HeaderText = "Телефон клиента";
+            dgOrders.Columns[10].HeaderText = "Дата записи";
+            dgOrders.Columns[11].HeaderText = "Выполнено";
+            dgOrders.Columns[12].HeaderText = "Дата регистрации";
+            dgOrders.Columns[13].HeaderText = "Дата оплаты";
+            dgOrders.Columns[14].HeaderText = "К оплате";
+            dgOrders.Columns[15].HeaderText = "Оплачено";
+            dgOrders.Columns[16].HeaderText = "Примечание";
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -56,7 +57,7 @@ namespace CRM
 
         private void bAddCard_Click(object sender, EventArgs e)
         {
-            Card card = new Card(true);
+            Card card = new Card();
             card.ShowInTaskbar = false;
             card.FormClosing += Card_FormClosing;
             card.ShowDialog();
@@ -64,10 +65,18 @@ namespace CRM
 
         private void bOpenCard_Click(object sender, EventArgs e)
         {
-            Card card = new Card(false);
-            card.ShowInTaskbar = false; 
-            card.FormClosing += Card_FormClosing;
-            card.ShowDialog();
+            if (code != null)
+            {
+                Card card = new Card(code);
+                card.ShowInTaskbar = false;
+                card.FormClosing += Card_FormClosing;
+                card.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите заявку из списка.","Ошибка!");
+            }
+            
         }
 
         private void bFilter_Click(object sender, EventArgs e)
@@ -114,7 +123,34 @@ namespace CRM
 
         private void Card_FormClosing(object sender, FormClosingEventArgs e)
         {
-            throw new NotImplementedException();
+            dgOrders.DataSource = null;
+            dgOrders.Rows.Clear();
+            dgOrders.DataSource = Connect.GetList("card");
+
+            dgOrders.Columns[0].HeaderText = "Номер заявки";
+            dgOrders.Columns[1].HeaderText = "Услуга";
+            dgOrders.Columns[2].HeaderText = "Мастер";
+            dgOrders.Columns[3].HeaderText = "Тип оплаты";
+            dgOrders.Columns[4].HeaderText = "Тип обращения";
+            dgOrders.Columns[5].HeaderText = "Зарегистрировал";
+            dgOrders.Columns[6].HeaderText = "Фамилия клиента";
+            dgOrders.Columns[7].HeaderText = "Имя клиента";
+            dgOrders.Columns[8].HeaderText = "Отчество клиента";
+            dgOrders.Columns[9].HeaderText = "Телефон клиента";
+            dgOrders.Columns[10].HeaderText = "Дата записи";
+            dgOrders.Columns[11].HeaderText = "Выполнено";
+            dgOrders.Columns[12].HeaderText = "Дата регистрации";
+            dgOrders.Columns[13].HeaderText = "Дата оплаты";
+            dgOrders.Columns[14].HeaderText = "К оплате";
+            dgOrders.Columns[15].HeaderText = "Оплачено";
+            dgOrders.Columns[16].HeaderText = "Примечание";
+
+
+        }
+
+        private void dgOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            code = dgOrders[0, dgOrders.CurrentRow.Index].Value.ToString();
         }
     }
 }

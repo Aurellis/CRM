@@ -243,6 +243,7 @@ namespace CRM
             this.cbService.Name = "cbService";
             this.cbService.Size = new System.Drawing.Size(140, 21);
             this.cbService.TabIndex = 0;
+            this.cbService.SelectedIndexChanged += new System.EventHandler(this.cbService_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -287,6 +288,7 @@ namespace CRM
             // 
             // tSumToPay
             // 
+            this.tSumToPay.Enabled = false;
             this.tSumToPay.Location = new System.Drawing.Point(126, 24);
             this.tSumToPay.Name = "tSumToPay";
             this.tSumToPay.Size = new System.Drawing.Size(140, 20);

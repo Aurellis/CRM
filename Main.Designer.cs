@@ -182,6 +182,7 @@ namespace CRM
             this.dgOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgOrders.Size = new System.Drawing.Size(777, 409);
             this.dgOrders.TabIndex = 1;
+            this.dgOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrders_CellClick);
             // 
             // lFullName
             // 
