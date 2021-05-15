@@ -433,78 +433,78 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `edititem`(target varchar(128), 
-							 target_id int,
-							 name varchar(128), 
-                             fullname varchar(128), 
-                             patron varchar(128), 
-                             tel varchar(128), 
-                             tpoint varchar(128), 
-                             isactive bool, 
-                             urole varchar(128) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edititem`(target varchar(128),
+target_id int,
+name varchar(128),
+fullname varchar(128),
+patron varchar(128),
+tel varchar(128),
+tpoint varchar(128),
+isactive bool,
+urole varchar(128) )
 BEGIN
 
 declare point_id int;
-declare role_id  int;
+declare role_id int;
 
 if(target = 'master') then
-	set point_id = (select id from points where name = tpoint);
-	UPDATE masters 
-    SET
-	   Name     = name,
-       FullName = fullname,
-       Point_ID = point_id,
-       isactive = isactive
-   WHERE `id` = target_id;
+set point_id = (select id from points where name = tpoint);
+UPDATE masters
+SET
+Name = name,
+FullName = fullname,
+Point_ID = point_id,
+isactive = isactive
+WHERE `id` = target_id;
 end if;
 
 if(target = 'client') then
-	UPDATE clients
-	SET
-	surname    = name,
-	name       = fullname,
-	patronymic = patron,
-	tel        = tel
-	WHERE id = target_id;
+UPDATE clients
+SET
+surname = name,
+name = fullname,
+patronymic = patron,
+tel = tel
+WHERE id = target_id;
 end if;
 
 if(target = 'points') then
-	UPDATE points
-	SET
-	 Name = name,
-	 Prim = fullname
-	WHERE id = target_id;
+UPDATE points
+SET
+Name = name,
+Prim = fullname
+WHERE id = target_id;
 end if;
 
 if(target = 'users') then
-	set role_id = (select id from roles where name = urole);
-	set point_id = (select id from points where name = tpoint);
-	UPDATE users
-	SET
-	 Login    = name,
-	 Password = fullname,
-	 UserName = patron,
-	 FullName = tel,
-	 Role_Id  = role_id,
-	 Point_Id = point_id,
-	 isactive = isactive
-	WHERE id = target_id;
+set role_id = (select id from roles where name = urole);
+set point_id = (select id from points where name = tpoint);
+UPDATE users
+SET
+Login = name,
+Password = fullname,
+UserName = patron,
+FullName = tel,
+Role_Id = role_id,
+Point_Id = point_id,
+isactive = isactive
+WHERE id = target_id;
 end if;
 
 if(target = 'role') then
-	UPDATE roles
-	SET
-	 Name = name
-	WHERE id = target_id;
+UPDATE roles
+SET
+Name = name
+WHERE id = target_id;
 end if;
 
 if(target = 'service') then
-	set point_id = (select id from points where name = tpoint);
-	UPDATE services
-	SET
-	Name = name,
-	Price = fullname,
-	Point_ID = point_id
+set point_id = (select id from points where name = tpoint);
+UPDATE services
+SET
+Name = name,
+Price = fullname,
+Point_ID = point_id
 WHERE id = target_id;
 
 end if;
@@ -758,4 +758,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-15 18:41:29
+-- Dump completed on 2021-05-15 19:08:37
