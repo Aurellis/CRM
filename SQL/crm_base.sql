@@ -158,6 +158,32 @@ INSERT INTO `points` VALUES (1,'Основная точка','Доп инфо');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `reports`
+--
+
+DROP TABLE IF EXISTS `reports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reports` (
+  `id` int NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `text` varchar(8000) NOT NULL,
+  `sql` varchar(8000) NOT NULL,
+  `iscard` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reports`
+--
+
+LOCK TABLES `reports` WRITE;
+/*!40000 ALTER TABLE `reports` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reports` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `requesttype`
 --
 
@@ -668,7 +694,9 @@ end if;
 if(target = 'paytype') then
 	select * from paytype;
 end if;
-
+if(target = 'report') then
+	select id, name from reports;
+end if;
 
 END ;;
 DELIMITER ;
@@ -760,4 +788,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-16 23:31:00
+-- Dump completed on 2021-05-17  2:17:35
