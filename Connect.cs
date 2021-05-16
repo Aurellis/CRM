@@ -62,7 +62,9 @@ namespace CRM
                 return false;
             }
         }
+
         
+
         internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
@@ -266,6 +268,35 @@ namespace CRM
         }
 
 
+        internal static void CustomQuery(string text)
+        {
+            Items.Clear();
+            MySqlConnection mySqlConn = new MySqlConnection();
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+
+            try
+            {
+                string sqlString = text;
+                MySqlCommand sqlCommand = new MySqlCommand(sqlString, mySqlConn);
+                mySqlConn.Open();
+                MySqlDataReader dataReader = sqlCommand.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    for (int i = 0; i < dataReader.FieldCount; i++)
+                    {
+                        Items.Add(dataReader.GetName(i), dataReader.GetValue(i).ToString());
+                    }
+                }
+                dataReader.Close();
+                mySqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка");
+
+            }
+        }
     }
 
 }

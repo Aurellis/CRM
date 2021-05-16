@@ -37,7 +37,6 @@ namespace CRM
             this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.праваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.подразделенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.моиНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкаОтчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.спискиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,8 +72,7 @@ namespace CRM
             // управлениеToolStripMenuItem
             // 
             this.управлениеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.администрированиеToolStripMenuItem,
-            this.моиНастройкиToolStripMenuItem});
+            this.администрированиеToolStripMenuItem});
             this.управлениеToolStripMenuItem.Name = "управлениеToolStripMenuItem";
             this.управлениеToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
             this.управлениеToolStripMenuItem.Text = "Управление";
@@ -86,7 +84,7 @@ namespace CRM
             this.праваToolStripMenuItem,
             this.подразделенияToolStripMenuItem});
             this.администрированиеToolStripMenuItem.Name = "администрированиеToolStripMenuItem";
-            this.администрированиеToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.администрированиеToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.администрированиеToolStripMenuItem.Text = "Администрирование";
             // 
             // пользователиToolStripMenuItem
@@ -110,12 +108,6 @@ namespace CRM
             this.подразделенияToolStripMenuItem.Text = "Подразделения";
             this.подразделенияToolStripMenuItem.Click += new System.EventHandler(this.подразделенияToolStripMenuItem_Click);
             // 
-            // моиНастройкиToolStripMenuItem
-            // 
-            this.моиНастройкиToolStripMenuItem.Name = "моиНастройкиToolStripMenuItem";
-            this.моиНастройкиToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.моиНастройкиToolStripMenuItem.Text = "Настройки пользователя";
-            // 
             // отчетыToolStripMenuItem
             // 
             this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -127,7 +119,7 @@ namespace CRM
             // настройкаОтчетовToolStripMenuItem
             // 
             this.настройкаОтчетовToolStripMenuItem.Name = "настройкаОтчетовToolStripMenuItem";
-            this.настройкаОтчетовToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.настройкаОтчетовToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.настройкаОтчетовToolStripMenuItem.Text = "Настройка отчетов";
             this.настройкаОтчетовToolStripMenuItem.Click += new System.EventHandler(this.настройкаОтчетовToolStripMenuItem_Click);
             // 
@@ -283,7 +275,6 @@ namespace CRM
         private System.Windows.Forms.ToolStripMenuItem администрированиеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem пользователиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem праваToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem моиНастройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкаОтчетовToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgOrders;
