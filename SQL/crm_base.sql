@@ -31,7 +31,7 @@ CREATE TABLE `clients` (
   `patronymic` varchar(128) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Иванов','Иван','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000'),(3,'Петров','Петров','','89000000000');
+INSERT INTO `clients` VALUES (1,'Иванов','Иван','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000'),(3,'Петров','Петров','','89000000000'),(4,'Авакян','Зозо','','89001112233');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `orders` (
   `prim` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,''),(3,1,1,1,1,1,3,'2021-05-15 17:15:23',0,'2021-05-15 17:15:23','2021-05-15 17:15:23',250.5,0,'ываываыва');
+INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,''),(3,1,1,1,1,1,3,'2021-05-15 17:15:23',0,'2021-05-15 17:15:23','2021-05-15 17:15:23',250.5,0,'ываываыва'),(4,1,1,1,2,1,4,'2021-05-16 22:49:47',0,'2021-05-16 22:49:47','2021-05-16 22:49:47',250.5,0,'');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +144,7 @@ CREATE TABLE `points` (
   `Name` varchar(45) NOT NULL,
   `Prim` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,7 +192,7 @@ CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +201,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Администратор'),(2,'Пользователь');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +228,7 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,'стрижка','250,5',NULL);
+INSERT INTO `services` VALUES (1,'стрижка','250,5',1);
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +251,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `Login_UNIQUE` (`Login`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +260,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','1234','Администратор','Администратор',1,0,1);
+INSERT INTO `users` VALUES (1,'admin','1234','Администратор','Администратор',1,1,1),(2,'user','123','Пользователь','Пользователь',2,1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,11 +309,11 @@ declare plandat datetime;
 declare regdat datetime;
 declare paydat datetime;
 
-set service_id = (select id from services     where name     = vservice);
-set master_id  = (select id from masters      where name     = vmaster);
-set paytype_id = (select id from paytype      where name     = vpaytype); 
-set reqtype_id = (select id from requesttype  where name     = vtypereg);
-set user_id    = (select id from users        where username = vuser);
+set service_id = (select id from services     where name like concat('', vservice,''));
+set master_id  = (select id from masters      where name like concat('', vmaster,''));
+set paytype_id = (select id from paytype      where name like concat('', vpaytype,'')); 
+set reqtype_id = (select id from requesttype  where name like concat('', vtypereg,''));
+set user_id    = (select id from users        where username like concat('', vuser,''));
 set plandat = (select replace(vplandat,'.','-'));
 set regdat = (select replace(vdatereg,'.','-'));
 set paydat = (select replace(vdatepay,'.','-'));
@@ -371,50 +372,48 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `additemlist`(target varchar(128), 
-                                name varchar(128), 
-                                fullname varchar(128), 
-                                patron varchar(128), 
-                                tel varchar(128), 
-                                tpoint varchar(128), 
-                                isactive bool, 
-                                urole varchar(128) )
+                                vname varchar(128), 
+                                vfullname varchar(128), 
+                                vpatron varchar(128), 
+                                vtel varchar(128), 
+                                vtpoint varchar(128), 
+                                visactive bool, 
+                                vurole varchar(128) )
 BEGIN
-
 declare point_id int;
-declare role_id  int;
+declare role_id int;
+
+set point_id = (select id from points where name like concat('',vtpoint,''));
+set role_id = (select id from roles where name like concat('',vurole,''));
 
 if(target = 'master') then
-	set point_id = (select id from points where name = tpoint);
 	INSERT INTO masters(Name, FullName, Point_ID, isactive)
-    select name, fullname, point_id, isactive;
+    select vname, vfullname, point_id, visactive;
 end if;
 
 if(target = 'client') then
 	INSERT INTO clients(surname, name, patronymic, tel)
-	select name, fullname, patron, tel;
+	select vname, vfullname, vpatron, vtel;
 end if;
 
 if(target = 'point') then
 INSERT INTO points(Name, Prim)
-select name, fullname;
+select vname, vfullname;
 end if;
 
 if(target = 'user') then
-	set role_id = (select id from roles where name = urole);
-	set point_id = (select id from points where name = tpoint);
-	INSERT INTO users(Login, Password, UserName, FullName, Role_Id, Point_Id, isactive)
-			   select name, fullname, patron, tel, role_id, point_id,isactive;
+INSERT INTO users (Login, Password, UserName, FullName, Point_Id, Role_Id, isactive)
+			   select vname, vfullname, vpatron, vtel, point_id, role_id, visactive;
 end if;
 
 if(target = 'role') then
 	INSERT INTO roles(name)
-	select name;
+	select vname;
 end if;
 
 if(target = 'service') then
-set point_id = (select id from points where name = tpoint);
 	INSERT INTO services(Name, Price, Point_ID)
-	select name, fullname, point_id;
+	select vname, vfullname, point_id;
 end if;
 
 END ;;
@@ -427,83 +426,83 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edititem`(target varchar(128),
 target_id int,
-name varchar(128),
-fullname varchar(128),
-patron varchar(128),
-tel varchar(128),
-tpoint varchar(128),
-isactive bool,
-urole varchar(128) )
+vname varchar(128),
+vfullname varchar(128),
+vpatron varchar(128),
+vtel varchar(128),
+vtpoint varchar(128),
+visactive bool,
+vurole varchar(128) )
 BEGIN
 
 declare point_id int;
 declare role_id int;
 
 if(target = 'master') then
-set point_id = (select id from points where name = tpoint);
+set point_id = (select id from points where name like concat('',vtpoint,'') );
 UPDATE masters
 SET
-Name = name,
-FullName = fullname,
+Name = vname,
+FullName = vfullname,
 Point_ID = point_id,
-isactive = isactive
+isactive = visactive
 WHERE `id` = target_id;
 end if;
 
 if(target = 'client') then
 UPDATE clients
 SET
-surname = name,
-name = fullname,
-patronymic = patron,
-tel = tel
+surname = vname,
+name = vfullname,
+patronymic = vpatron,
+tel = vtel
 WHERE id = target_id;
 end if;
 
 if(target = 'points') then
 UPDATE points
 SET
-Name = name,
-Prim = fullname
+Name = vname,
+Prim = vfullname
 WHERE id = target_id;
 end if;
 
 if(target = 'users') then
-set role_id = (select id from roles where name = urole);
-set point_id = (select id from points where name = tpoint);
+set role_id = (select id from roles where name like concat('',vurole,''));
+set point_id = (select id from points where name like concat('',vtpoint,''));
 UPDATE users
 SET
-Login = name,
-Password = fullname,
-UserName = patron,
-FullName = tel,
+Login = vname,
+Password = vfullname,
+UserName = vpatron,
+FullName = vtel,
 Role_Id = role_id,
 Point_Id = point_id,
-isactive = isactive
+isactive = visactive
 WHERE id = target_id;
 end if;
 
 if(target = 'role') then
 UPDATE roles
 SET
-Name = name
+Name = vname
 WHERE id = target_id;
 end if;
 
 if(target = 'service') then
-set point_id = (select id from points where name = tpoint);
+set point_id = (select id from points where name like concat('',vtpoint,''));
 UPDATE services
 SET
-Name = name,
-Price = fullname,
+Name = vname,
+Price = vfullname,
 Point_ID = point_id
 WHERE id = target_id;
 
@@ -655,7 +654,10 @@ if(target = 'service') then
 	select * from services;
 end if;
 if(target = 'user') then
-	select * from users;
+	select users.id, login, username, fullname, points.name as points, roles.name as roles, isactive
+    from users
+    left join points on points.id = users.point_id
+    left join roles on roles.id = users.role_id;
 end if;
 if(target = 'card') then
 	call getcard(0);
@@ -758,4 +760,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-15 19:08:37
+-- Dump completed on 2021-05-16 23:31:00

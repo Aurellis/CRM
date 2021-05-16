@@ -51,6 +51,7 @@ namespace CRM
             tFullname.Text = Connect.Items["FullName"];
             tPassword.Text = Connect.Items["Password"];
             cbIsActive.Checked = Convert.ToBoolean(Int16.Parse(Connect.Items["isactive"]));
+            
         }
 
         private void bSave_Click(object sender, EventArgs e)
