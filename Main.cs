@@ -200,6 +200,13 @@ namespace CRM
                 }
             }
         }
+
+        private void праваToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Roles roles = new Roles();
+            roles.ShowInTaskbar = false;
+            roles.ShowDialog();
+        }
     }
 }
    

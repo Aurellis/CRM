@@ -170,6 +170,7 @@ namespace CRM
             try
             {
                 string sqlString = $"call additemlist('{source}','{text1}','{text2}','{text3}','{text4}','{point}','{isActive}','{urole}')";
+                //MessageBox.Show(sqlString);
                 MySqlCommand sqlCommand = new MySqlCommand(sqlString, mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();
@@ -250,6 +251,7 @@ namespace CRM
             try
             {
                 string sqlString = $"call edititem('{source}','{itemCode}','{text1}','{text2}','{text3}','{text4}','{point}','{isActive}','{urole}')";
+                
                 MySqlCommand sqlCommand = new MySqlCommand(sqlString, mySqlConn);
                 sqlCommand.CommandType = CommandType.Text;
                 mySqlConn.Open();

@@ -19,13 +19,11 @@ namespace CRM
             dgList.DataSource = Connect.GetList("user");
             dgList.Columns[0].HeaderText = "Код";
             dgList.Columns[1].HeaderText = "Логин";
-            dgList.Columns[2].HeaderText = "Пароль";
-            dgList.Columns[2].Visible = false;
-            dgList.Columns[3].HeaderText = "Имя";
-            dgList.Columns[4].HeaderText = "Полное имя";
-            dgList.Columns[5].HeaderText = "Точка";
-            dgList.Columns[6].HeaderText = "Права";
-            dgList.Columns[7].HeaderText = "Активен";
+            dgList.Columns[2].HeaderText = "Имя";
+            dgList.Columns[3].HeaderText = "Полное имя";
+            dgList.Columns[4].HeaderText = "Точка";
+            dgList.Columns[5].HeaderText = "Права";
+            dgList.Columns[6].HeaderText = "Активен";
         }
 
         private void dgList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -46,6 +44,15 @@ namespace CRM
             dgList.DataSource = null;
             dgList.Rows.Clear();
             dgList.DataSource = Connect.GetList("user");
+            dgList.Columns[0].HeaderText = "Код";
+            dgList.Columns[1].HeaderText = "Логин";
+            dgList.Columns[2].HeaderText = "Имя";
+            dgList.Columns[3].HeaderText = "Полное имя";
+            dgList.Columns[4].HeaderText = "Точка";
+            dgList.Columns[5].HeaderText = "Права";
+            dgList.Columns[6].HeaderText = "Активен";
+
+
         }
 
         private void bEdit_Click(object sender, EventArgs e)

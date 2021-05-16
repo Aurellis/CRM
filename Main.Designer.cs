@@ -93,20 +93,21 @@ namespace CRM
             // пользователиToolStripMenuItem
             // 
             this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.пользователиToolStripMenuItem.Text = "Пользователи";
             this.пользователиToolStripMenuItem.Click += new System.EventHandler(this.пользователиToolStripMenuItem_Click);
             // 
             // праваToolStripMenuItem
             // 
             this.праваToolStripMenuItem.Name = "праваToolStripMenuItem";
-            this.праваToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.праваToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.праваToolStripMenuItem.Text = "Права";
+            this.праваToolStripMenuItem.Click += new System.EventHandler(this.праваToolStripMenuItem_Click);
             // 
             // подразделенияToolStripMenuItem
             // 
             this.подразделенияToolStripMenuItem.Name = "подразделенияToolStripMenuItem";
-            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.подразделенияToolStripMenuItem.Text = "Подразделения";
             this.подразделенияToolStripMenuItem.Click += new System.EventHandler(this.подразделенияToolStripMenuItem_Click);
             // 
