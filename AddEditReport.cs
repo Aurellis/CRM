@@ -62,5 +62,62 @@ namespace CRM
             }
             
         }
+
+        private void tscbFonts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rtbBody.SelectionFont = new Font(tscbFonts.SelectedItem.ToString(), float.Parse(tstSize.Text));
+        }
+
+        private void tstSize_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                rtbBody.SelectionFont = new Font(rtbBody.SelectionFont.Name, float.Parse(tstSize.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsbBold_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionFont = new Font(rtbBody.SelectionFont.Name, float.Parse(tstSize.Text), FontStyle.Bold);
+        }
+
+        private void tsbItalic_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionFont = new Font(rtbBody.SelectionFont.Name, float.Parse(tstSize.Text), FontStyle.Italic);
+        }
+
+        private void tsbCrossed_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionFont = new Font(rtbBody.SelectionFont.Name, float.Parse(tstSize.Text), FontStyle.Strikeout);
+        }
+
+        private void tsbNormal_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionFont = new Font(rtbBody.SelectionFont.Name, float.Parse(tstSize.Text), FontStyle.Regular);
+        }
+
+        private void tsbLeft_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionAlignment =  HorizontalAlignment.Left;
+        }
+
+        private void tsbCenter_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionAlignment = HorizontalAlignment.Center;
+        }
+
+        private void tsbRight_Click(object sender, EventArgs e)
+        {
+            rtbBody.SelectionAlignment = HorizontalAlignment.Right;
+        }
+
+        private void сохранитьToolStripButton_Click(object sender, EventArgs e)
+        {
+            Connect.Reports();
+        }
     }
 }

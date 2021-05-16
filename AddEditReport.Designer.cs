@@ -36,23 +36,28 @@ namespace CRM
             this.сохранитьToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.открытьToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.вырезатьToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.вставкаToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.копироватьToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tscbFonts = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.tstSize = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tsbBold = new System.Windows.Forms.ToolStripButton();
+            this.tsbItalic = new System.Windows.Forms.ToolStripButton();
+            this.tsbCrossed = new System.Windows.Forms.ToolStripButton();
+            this.rtbBody = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.bQuery = new System.Windows.Forms.Button();
             this.tQuery = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lItems = new System.Windows.Forms.ListView();
+            this.tsbNormal = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbLeft = new System.Windows.Forms.ToolStripButton();
+            this.tsbCenter = new System.Windows.Forms.ToolStripButton();
+            this.tsbRight = new System.Windows.Forms.ToolStripButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -64,20 +69,20 @@ namespace CRM
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 47);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(495, 506);
+            this.tabControl1.Size = new System.Drawing.Size(495, 500);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.toolStrip1);
-            this.tabPage1.Controls.Add(this.richTextBox1);
+            this.tabPage1.Controls.Add(this.rtbBody);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(487, 480);
+            this.tabPage1.Size = new System.Drawing.Size(487, 474);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -87,17 +92,18 @@ namespace CRM
             this.сохранитьToolStripButton,
             this.открытьToolStripButton,
             this.toolStripSeparator,
-            this.вырезатьToolStripButton,
-            this.вставкаToolStripButton,
-            this.копироватьToolStripButton,
             this.toolStripSeparator1,
             this.tscbFonts,
-            this.toolStripComboBox2,
-            this.toolStripTextBox1,
+            this.tstSize,
             this.toolStripSeparator2,
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
+            this.tsbBold,
+            this.tsbItalic,
+            this.tsbCrossed,
+            this.tsbNormal,
+            this.toolStripSeparator3,
+            this.tsbLeft,
+            this.tsbCenter,
+            this.tsbRight});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -113,6 +119,7 @@ namespace CRM
             this.сохранитьToolStripButton.Name = "сохранитьToolStripButton";
             this.сохранитьToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.сохранитьToolStripButton.Text = "&Сохранить";
+            this.сохранитьToolStripButton.Click += new System.EventHandler(this.сохранитьToolStripButton_Click);
             // 
             // открытьToolStripButton
             // 
@@ -128,33 +135,6 @@ namespace CRM
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
-            // вырезатьToolStripButton
-            // 
-            this.вырезатьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.вырезатьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("вырезатьToolStripButton.Image")));
-            this.вырезатьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.вырезатьToolStripButton.Name = "вырезатьToolStripButton";
-            this.вырезатьToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.вырезатьToolStripButton.Text = "В&ырезать";
-            // 
-            // вставкаToolStripButton
-            // 
-            this.вставкаToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.вставкаToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("вставкаToolStripButton.Image")));
-            this.вставкаToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.вставкаToolStripButton.Name = "вставкаToolStripButton";
-            this.вставкаToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.вставкаToolStripButton.Text = "Вст&авка";
-            // 
-            // копироватьToolStripButton
-            // 
-            this.копироватьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.копироватьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("копироватьToolStripButton.Image")));
-            this.копироватьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.копироватьToolStripButton.Name = "копироватьToolStripButton";
-            this.копироватьToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.копироватьToolStripButton.Text = "&Копировать";
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -164,59 +144,56 @@ namespace CRM
             // 
             this.tscbFonts.Name = "tscbFonts";
             this.tscbFonts.Size = new System.Drawing.Size(75, 25);
+            this.tscbFonts.SelectedIndexChanged += new System.EventHandler(this.tscbFonts_SelectedIndexChanged);
             // 
-            // toolStripComboBox2
+            // tstSize
             // 
-            this.toolStripComboBox2.Items.AddRange(new object[] {
-            "По левому краю",
-            "По центру",
-            "По правому краю"});
-            this.toolStripComboBox2.Name = "toolStripComboBox2";
-            this.toolStripComboBox2.Size = new System.Drawing.Size(75, 25);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(40, 25);
+            this.tstSize.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tstSize.Name = "tstSize";
+            this.tstSize.Size = new System.Drawing.Size(40, 25);
+            this.tstSize.Text = "10";
+            this.tstSize.TextChanged += new System.EventHandler(this.tstSize_TextChanged);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton1
+            // tsbBold
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Ж";
+            this.tsbBold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbBold.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbBold.Name = "tsbBold";
+            this.tsbBold.Size = new System.Drawing.Size(23, 22);
+            this.tsbBold.Text = "Ж";
+            this.tsbBold.Click += new System.EventHandler(this.tsbBold_Click);
             // 
-            // toolStripButton2
+            // tsbItalic
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "К";
+            this.tsbItalic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbItalic.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbItalic.Name = "tsbItalic";
+            this.tsbItalic.Size = new System.Drawing.Size(23, 22);
+            this.tsbItalic.Text = "К";
+            this.tsbItalic.Click += new System.EventHandler(this.tsbItalic_Click);
             // 
-            // toolStripButton3
+            // tsbCrossed
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Ч";
+            this.tsbCrossed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbCrossed.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCrossed.Name = "tsbCrossed";
+            this.tsbCrossed.Size = new System.Drawing.Size(23, 22);
+            this.tsbCrossed.Text = "Ч";
+            this.tsbCrossed.Click += new System.EventHandler(this.tsbCrossed_Click);
             // 
-            // richTextBox1
+            // rtbBody
             // 
-            this.richTextBox1.HideSelection = false;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 31);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(487, 449);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.rtbBody.HideSelection = false;
+            this.rtbBody.Location = new System.Drawing.Point(0, 31);
+            this.rtbBody.Name = "rtbBody";
+            this.rtbBody.Size = new System.Drawing.Size(481, 443);
+            this.rtbBody.TabIndex = 0;
+            this.rtbBody.Text = "";
             // 
             // tabPage2
             // 
@@ -251,7 +228,7 @@ namespace CRM
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lItems);
-            this.groupBox1.Location = new System.Drawing.Point(527, 12);
+            this.groupBox1.Location = new System.Drawing.Point(527, 47);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(132, 502);
             this.groupBox1.TabIndex = 1;
@@ -268,11 +245,88 @@ namespace CRM
             this.lItems.UseCompatibleStateImageBehavior = false;
             this.lItems.View = System.Windows.Forms.View.List;
             // 
+            // tsbNormal
+            // 
+            this.tsbNormal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbNormal.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNormal.Name = "tsbNormal";
+            this.tsbNormal.Size = new System.Drawing.Size(23, 22);
+            this.tsbNormal.Text = "Н";
+            this.tsbNormal.Click += new System.EventHandler(this.tsbNormal_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbLeft
+            // 
+            this.tsbLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbLeft.Name = "tsbLeft";
+            this.tsbLeft.Size = new System.Drawing.Size(23, 22);
+            this.tsbLeft.Text = "Л";
+            this.tsbLeft.Click += new System.EventHandler(this.tsbLeft_Click);
+            // 
+            // tsbCenter
+            // 
+            this.tsbCenter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbCenter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCenter.Name = "tsbCenter";
+            this.tsbCenter.Size = new System.Drawing.Size(23, 22);
+            this.tsbCenter.Text = "Ц";
+            this.tsbCenter.Click += new System.EventHandler(this.tsbCenter_Click);
+            // 
+            // tsbRight
+            // 
+            this.tsbRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRight.Name = "tsbRight";
+            this.tsbRight.Size = new System.Drawing.Size(23, 22);
+            this.tsbRight.Text = "П";
+            this.tsbRight.Click += new System.EventHandler(this.tsbRight_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Наименование";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(101, 10);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(192, 20);
+            this.textBox1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(589, 10);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(70, 20);
+            this.textBox2.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(557, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Код";
+            // 
             // AddEditReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 559);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -289,6 +343,7 @@ namespace CRM
             this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -296,26 +351,31 @@ namespace CRM
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbBody;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView lItems;
         private System.Windows.Forms.TextBox tQuery;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripComboBox tscbFonts;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox tstSize;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton открытьToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton вырезатьToolStripButton;
-        private System.Windows.Forms.ToolStripButton копироватьToolStripButton;
-        private System.Windows.Forms.ToolStripButton вставкаToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton сохранитьToolStripButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton tsbBold;
+        private System.Windows.Forms.ToolStripButton tsbItalic;
+        private System.Windows.Forms.ToolStripButton tsbCrossed;
         private System.Windows.Forms.Button bQuery;
+        private System.Windows.Forms.ToolStripButton tsbNormal;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton tsbLeft;
+        private System.Windows.Forms.ToolStripButton tsbCenter;
+        private System.Windows.Forms.ToolStripButton tsbRight;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
     }
 }
