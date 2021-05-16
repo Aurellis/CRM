@@ -207,6 +207,27 @@ namespace CRM
             roles.ShowInTaskbar = false;
             roles.ShowDialog();
         }
+
+        private void bPrint_Click(object sender, EventArgs e)
+        {
+            if (code != null)
+            {
+                Reports reports = new Reports(code);
+                reports.ShowInTaskbar = false;
+                reports.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите заявку из списка.", "Ошибка!");
+            }
+        }
+
+        private void настройкаОтчетовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reports reports = new Reports();
+            reports.ShowInTaskbar = false;
+            reports.ShowDialog();
+        }
     }
 }
    

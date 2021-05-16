@@ -220,5 +220,12 @@ namespace CRM
             tPrim.Enabled = true;
             bSave.Enabled = true;
         }
+
+        private void bPrint_Click(object sender, EventArgs e)
+        {
+            Reports reports = new Reports(id);
+            reports.ShowInTaskbar = false;
+            reports.ShowDialog();
+        }
     }
 }

@@ -39,7 +39,6 @@ namespace CRM
             this.подразделенияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.моиНастройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкаОтчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.спискиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.мастераToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,23 +119,17 @@ namespace CRM
             // отчетыToolStripMenuItem
             // 
             this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.списокToolStripMenuItem,
             this.настройкаОтчетовToolStripMenuItem});
             this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
             this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.отчетыToolStripMenuItem.Text = "Отчеты";
             // 
-            // списокToolStripMenuItem
-            // 
-            this.списокToolStripMenuItem.Name = "списокToolStripMenuItem";
-            this.списокToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.списокToolStripMenuItem.Text = "Список";
-            // 
             // настройкаОтчетовToolStripMenuItem
             // 
             this.настройкаОтчетовToolStripMenuItem.Name = "настройкаОтчетовToolStripMenuItem";
-            this.настройкаОтчетовToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.настройкаОтчетовToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.настройкаОтчетовToolStripMenuItem.Text = "Настройка отчетов";
+            this.настройкаОтчетовToolStripMenuItem.Click += new System.EventHandler(this.настройкаОтчетовToolStripMenuItem_Click);
             // 
             // спискиToolStripMenuItem
             // 
@@ -230,6 +223,7 @@ namespace CRM
             this.bPrint.TabIndex = 6;
             this.bPrint.Text = "Печать";
             this.bPrint.UseVisualStyleBackColor = true;
+            this.bPrint.Click += new System.EventHandler(this.bPrint_Click);
             // 
             // tFastFilter
             // 
@@ -291,7 +285,6 @@ namespace CRM
         private System.Windows.Forms.ToolStripMenuItem праваToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem моиНастройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem списокToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкаОтчетовToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgOrders;
         private System.Windows.Forms.Label lFullName;

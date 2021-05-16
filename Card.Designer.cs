@@ -444,6 +444,7 @@ namespace CRM
             this.bPrint.TabIndex = 11;
             this.bPrint.Text = "Печать";
             this.bPrint.UseVisualStyleBackColor = true;
+            this.bPrint.Click += new System.EventHandler(this.bPrint_Click);
             // 
             // Card
             // 
