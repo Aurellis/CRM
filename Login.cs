@@ -67,15 +67,15 @@ namespace CRM
 
         private void bCheckSettings_Click(object sender, EventArgs e)
         {
-            if (Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString(), tDbUser.Text,tDbPass.Text))
+            if (Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString(), tDbUser.Text, tDbPass.Text))
             {
                 MessageBox.Show("Успешное подключение");
                 try
                 {
-                    ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text, DataBaseUser = tDbUser.Text, DataBasePass = tDbPass.Text};
+                    ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text, DataBaseUser = tDbUser.Text, DataBasePass = tDbPass.Text };
                     string connectSettingsJson = JsonSerializer.Serialize<ConnectSettings>(connectSettings);
 
-                    if (!Directory.Exists(Path.Combine(programmFolder,@"Settings")))
+                    if (!Directory.Exists(Path.Combine(programmFolder, @"Settings")))
                     {
                         Directory.CreateDirectory(Path.Combine(programmFolder, @"Settings"));
                     }
@@ -85,21 +85,12 @@ namespace CRM
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message,"Ошибка");
+                    MessageBox.Show(ex.Message, "Ошибка");
                 }
             }
             else
             {
                 MessageBox.Show("Подключение не удалось. Проверьте данные");
-                ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text, DataBaseUser = tDbUser.Text, DataBasePass = tDbPass.Text };
-                string connectSettingsJson = JsonSerializer.Serialize<ConnectSettings>(connectSettings);
-
-                if (!Directory.Exists(Path.Combine(programmFolder, @"Settings")))
-                {
-                    Directory.CreateDirectory(Path.Combine(programmFolder, @"Settings"));
-                }
-
-                File.WriteAllText(settingsPath, connectSettingsJson);
             }
         }
 
