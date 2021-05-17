@@ -20,22 +20,27 @@ namespace CRM
 
         private static string serverName;
         private static string baseName;
+        private static string dbuser;
+        private static string dbpass;
 
-        internal static bool SettingsConnect(string _serverName, string _baseName = "")
+        internal static bool SettingsConnect(string _serverName, string _baseName = "", string _dbuser = "root", string _dbpass = "1234")
         {
             serverName = _serverName;
             baseName = _baseName;
+            dbuser = _dbuser;
+            dbpass = _dbpass;
+
             DataBases = new List<string>();
             DataBases.Clear();
             MySqlConnection mySqlConn = new MySqlConnection();
 
             if (_baseName == "")
             {
-                mySqlConn.ConnectionString = "Data Source=" + _serverName + ";User Id=root;Password=1234";
+                mySqlConn.ConnectionString = $"Data Source={_serverName};User Id={dbuser};Password={dbpass}";
             }
             else
             {
-                mySqlConn.ConnectionString = "Database=" + _baseName + ";Data Source=" + _serverName + ";User Id=root;Password=1234";
+                mySqlConn.ConnectionString = $"Database={_baseName};Data Source={_serverName};User Id={dbuser};Password={dbpass}";
             }
 
             try
@@ -66,7 +71,7 @@ namespace CRM
         internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -103,7 +108,7 @@ namespace CRM
         {
             MySqlConnection mySqlConn = new MySqlConnection();
 
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -143,7 +148,7 @@ namespace CRM
             DataTable table = new DataTable();
             MySqlConnection mySqlConn = new MySqlConnection();
 
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -165,7 +170,7 @@ namespace CRM
         internal static void AddItem(string source, string text1, string text2, string text3, string text4, string point, int isActive, string urole)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -187,7 +192,7 @@ namespace CRM
         internal static void SaveCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID, string code)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -212,7 +217,7 @@ namespace CRM
             Items.Clear();
             MySqlConnection mySqlConn = new MySqlConnection();
 
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -246,7 +251,7 @@ namespace CRM
         internal static void EditItem(string source, string itemCode, string text1, string text2, string text3, string text4, string point, int  isActive, string urole)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -269,7 +274,7 @@ namespace CRM
         {
             Items.Clear();
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             try
             {
@@ -298,7 +303,7 @@ namespace CRM
         internal static void Reports(string item, string code, string name, string rtf, string query)
         {
             MySqlConnection mySqlConn = new MySqlConnection();
-            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id={dbuser};Password={dbpass}";
 
             if (code == null)
             {

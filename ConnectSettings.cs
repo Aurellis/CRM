@@ -11,5 +11,7 @@ namespace CRM
         public string Server { get; set; }
         public string DataBase { get; set; }
         public string UserName { get; set; }
+        public string DataBaseUser { get; set; }
+        public string DataBasePass { get; set; }
     }
 }

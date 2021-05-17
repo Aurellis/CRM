@@ -37,6 +37,8 @@ namespace CRM
                 cbDataBases.Items.Add(connectSettings.DataBase);
                 cbDataBases.SelectedItem = connectSettings.DataBase;
                 tLogin.Text = connectSettings.UserName;
+                tDbUser.Text = connectSettings.DataBaseUser;
+                tDbPass.Text = connectSettings.DataBasePass;
                 connectState = true;
             }
 
@@ -65,12 +67,12 @@ namespace CRM
 
         private void bCheckSettings_Click(object sender, EventArgs e)
         {
-            if (Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString()))
+            if (Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString(), tDbUser.Text,tDbPass.Text))
             {
                 MessageBox.Show("Успешное подключение");
                 try
                 {
-                    ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text};
+                    ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text, DataBaseUser = tDbUser.Text, DataBasePass = tDbPass.Text};
                     string connectSettingsJson = JsonSerializer.Serialize<ConnectSettings>(connectSettings);
 
                     if (!Directory.Exists(Path.Combine(programmFolder,@"Settings")))
@@ -89,6 +91,15 @@ namespace CRM
             else
             {
                 MessageBox.Show("Подключение не удалось. Проверьте данные");
+                ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text, DataBaseUser = tDbUser.Text, DataBasePass = tDbPass.Text };
+                string connectSettingsJson = JsonSerializer.Serialize<ConnectSettings>(connectSettings);
+
+                if (!Directory.Exists(Path.Combine(programmFolder, @"Settings")))
+                {
+                    Directory.CreateDirectory(Path.Combine(programmFolder, @"Settings"));
+                }
+
+                File.WriteAllText(settingsPath, connectSettingsJson);
             }
         }
 
@@ -100,7 +111,7 @@ namespace CRM
             }
             else
             {
-                if (Connect.SettingsConnect(tServerHost.Text))
+                if (Connect.SettingsConnect(tServerHost.Text,"",tDbUser.Text,tDbPass.Text))
                 {
                     cbDataBases.Items.Clear();
                     cbDataBases.Items.AddRange(Connect.DataBases.ToArray()) ;
@@ -125,7 +136,7 @@ namespace CRM
                                 File.Delete(settingsPath);
                             }
 
-                            ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text };
+                            ConnectSettings connectSettings = new ConnectSettings() { Server = tServerHost.Text, DataBase = cbDataBases.SelectedItem.ToString(), UserName = tLogin.Text, DataBaseUser = tDbUser.Text, DataBasePass = tDbPass.Text };
                             string connectSettingsJson = JsonSerializer.Serialize<ConnectSettings>(connectSettings);
 
                             if (!Directory.Exists(Path.Combine(programmFolder, @"Settings")))
@@ -157,6 +168,25 @@ namespace CRM
                 MessageBox.Show("Проверьте параметры подключения!","Ошибка!");
             }
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.Height == 350)
+            {               
+                this.Height = 440;
+            }
+            else
+            {
+                if (tServerHost.Text == string.Empty || tServerHost.Text.Contains(' ') || !Connect.SettingsConnect(tServerHost.Text))
+                {
+                    MessageBox.Show("Адрес сервера не указан или содержит недопустимые символы");
+                }
+                else
+                {                    
+                    this.Height = 350;
+                }
+            }
         }
     }
 }
