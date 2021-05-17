@@ -228,6 +228,31 @@ namespace CRM
             reports.ShowInTaskbar = false;
             reports.ShowDialog();
         }
+
+        private void bUpdate_Click(object sender, EventArgs e)
+        {
+            dgOrders.DataSource = null;
+            dgOrders.Rows.Clear();
+            dgOrders.DataSource = Connect.GetList("card");
+
+            dgOrders.Columns[0].HeaderText = "Номер заявки";
+            dgOrders.Columns[1].HeaderText = "Услуга";
+            dgOrders.Columns[2].HeaderText = "Мастер";
+            dgOrders.Columns[3].HeaderText = "Тип оплаты";
+            dgOrders.Columns[4].HeaderText = "Тип обращения";
+            dgOrders.Columns[5].HeaderText = "Зарегистрировал";
+            dgOrders.Columns[6].HeaderText = "Фамилия клиента";
+            dgOrders.Columns[7].HeaderText = "Имя клиента";
+            dgOrders.Columns[8].HeaderText = "Отчество клиента";
+            dgOrders.Columns[9].HeaderText = "Телефон клиента";
+            dgOrders.Columns[10].HeaderText = "Дата записи";
+            dgOrders.Columns[11].HeaderText = "Выполнено";
+            dgOrders.Columns[12].HeaderText = "Дата регистрации";
+            dgOrders.Columns[13].HeaderText = "Дата оплаты";
+            dgOrders.Columns[14].HeaderText = "К оплате";
+            dgOrders.Columns[15].HeaderText = "Оплачено";
+            dgOrders.Columns[16].HeaderText = "Примечание";
+        }
     }
 }
    

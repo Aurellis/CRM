@@ -52,6 +52,7 @@ namespace CRM
             this.tFastFilter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.bUpdate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrders)).BeginInit();
             this.SuspendLayout();
@@ -90,21 +91,21 @@ namespace CRM
             // пользователиToolStripMenuItem
             // 
             this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.пользователиToolStripMenuItem.Text = "Пользователи";
             this.пользователиToolStripMenuItem.Click += new System.EventHandler(this.пользователиToolStripMenuItem_Click);
             // 
             // праваToolStripMenuItem
             // 
             this.праваToolStripMenuItem.Name = "праваToolStripMenuItem";
-            this.праваToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.праваToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.праваToolStripMenuItem.Text = "Права";
             this.праваToolStripMenuItem.Click += new System.EventHandler(this.праваToolStripMenuItem_Click);
             // 
             // подразделенияToolStripMenuItem
             // 
             this.подразделенияToolStripMenuItem.Name = "подразделенияToolStripMenuItem";
-            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.подразделенияToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.подразделенияToolStripMenuItem.Text = "Подразделения";
             this.подразделенияToolStripMenuItem.Click += new System.EventHandler(this.подразделенияToolStripMenuItem_Click);
             // 
@@ -240,11 +241,22 @@ namespace CRM
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // bUpdate
+            // 
+            this.bUpdate.Location = new System.Drawing.Point(323, 27);
+            this.bUpdate.Name = "bUpdate";
+            this.bUpdate.Size = new System.Drawing.Size(95, 34);
+            this.bUpdate.TabIndex = 10;
+            this.bUpdate.Text = "Обновить";
+            this.bUpdate.UseVisualStyleBackColor = true;
+            this.bUpdate.Click += new System.EventHandler(this.bUpdate_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 501);
+            this.Controls.Add(this.bUpdate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tFastFilter);
             this.Controls.Add(this.bPrint);
@@ -291,5 +303,6 @@ namespace CRM
         private System.Windows.Forms.ToolStripMenuItem подразделенияToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem мастераToolStripMenuItem;
+        private System.Windows.Forms.Button bUpdate;
     }
 }
