@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,21 @@ namespace CRM
             InitializeComponent();
             FontsLoad();
             lItems.Items.Add("ObjID");
+            this.Width = 690;
         }
 
         public AddEditReport(string item)
         {
             InitializeComponent();
             FontsLoad();
+            Connect.GetItem("report",item);
+            
+            rtbBody.Text = Connect.Items["textbody"];
+            tQuery.Text = Connect.Items["sqlbody"];
+            tCode.Text = Connect.Items["id"];
+            tName.Text = Connect.Items["name"];
             lItems.Items.Add("ObjID");
+            this.Width = 690;
             this.item = item;
         }
 
@@ -35,8 +44,30 @@ namespace CRM
         {            
             InitializeComponent();
             FontsLoad();
+            tabBody.Enabled = false;
+            
+            this.Width = 530; //
             this.code = code;
             this.item = item;
+
+            Connect.GetItem("report", item);
+            tName.Text = Connect.Items["name"];
+            ParseText(Connect.Items["textbody"], Connect.Items["sqlbody"]);
+            
+
+        }
+
+        private void ParseText(string text, string sql)
+        {
+
+            Connect.CustomQuery(sql.Replace("ObjId", code));
+
+            foreach (var key in Connect.Items.Keys)
+            {
+                text = text.Replace(key, Connect.Items[key]);
+            }
+
+            rtbBody.Text = text;
         }
 
         public void FontsLoad ()
@@ -59,8 +90,7 @@ namespace CRM
             foreach (var item in Connect.Items)
             {
                 lItems.Items.Add(item.Key);
-            }
-            
+            }            
         }
 
         private void tscbFonts_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,7 +147,28 @@ namespace CRM
 
         private void сохранитьToolStripButton_Click(object sender, EventArgs e)
         {
-            Connect.Reports();
+            if (item == null)
+            {
+                item = "0";
+            }
+            
+            Connect.Reports(item, code, tName.Text, rtbBody.Text, tQuery.Text);
+            this.Close();
+        }
+
+        private void bPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += PrintDocument_PrintPage; 
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+            if (printDialog.ShowDialog() == DialogResult.OK)
+                printDialog.Document.Print();
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(rtbBody.Text, rtbBody.Font, Brushes.Black,0,0);
         }
     }
 }

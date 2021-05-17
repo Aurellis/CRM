@@ -21,8 +21,6 @@ namespace CRM
             dgList.Columns[0].HeaderText = "Код";
             dgList.Columns[1].HeaderText = "Название";
 
-            bPrint.Enabled = false;
-            bPrint.Visible = false;
 
             bView.Enabled = false;
             bView.Visible = false;
@@ -42,9 +40,6 @@ namespace CRM
             dgList.Columns[0].HeaderText = "Код";
             dgList.Columns[1].HeaderText = "Название";
 
-
-            bPrint.Enabled = true;
-            bPrint.Visible = true;
 
             bView.Enabled = true;
             bView.Visible = true;
@@ -88,22 +83,19 @@ namespace CRM
         {
             AddEditReport viewReport = new AddEditReport();
             viewReport.ShowInTaskbar = false;
+            viewReport.FormClosing += ViewReport_FormClosing;
             viewReport.ShowDialog();
         }
 
-        private void bPrint_Click(object sender, EventArgs e)
+        private void ViewReport_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (item != null)
-            {
-                AddEditReport viewReport = new AddEditReport(item, code);
-                viewReport.ShowInTaskbar = false;
-                viewReport.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Выберите форму из списка.", "Ошибка!");
-            }
+            dgList.DataSource = null;
+            dgList.DataSource = Connect.GetList("report");
+            dgList.Columns[0].HeaderText = "Код";
+            dgList.Columns[1].HeaderText = "Название";
         }
+
+       
 
         private void dgList_CellClick(object sender, DataGridViewCellEventArgs e)
         {

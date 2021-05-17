@@ -32,7 +32,6 @@ namespace CRM
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports));
             this.dgList = new System.Windows.Forms.DataGridView();
             this.bView = new System.Windows.Forms.Button();
-            this.bPrint = new System.Windows.Forms.Button();
             this.bAdd = new System.Windows.Forms.Button();
             this.bSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgList)).BeginInit();
@@ -63,19 +62,9 @@ namespace CRM
             this.bView.UseVisualStyleBackColor = true;
             this.bView.Click += new System.EventHandler(this.bView_Click);
             // 
-            // bPrint
-            // 
-            this.bPrint.Location = new System.Drawing.Point(94, 405);
-            this.bPrint.Name = "bPrint";
-            this.bPrint.Size = new System.Drawing.Size(75, 23);
-            this.bPrint.TabIndex = 2;
-            this.bPrint.Text = "Печать";
-            this.bPrint.UseVisualStyleBackColor = true;
-            this.bPrint.Click += new System.EventHandler(this.bPrint_Click);
-            // 
             // bAdd
             // 
-            this.bAdd.Location = new System.Drawing.Point(94, 404);
+            this.bAdd.Location = new System.Drawing.Point(94, 406);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(75, 23);
             this.bAdd.TabIndex = 3;
@@ -100,7 +89,6 @@ namespace CRM
             this.ClientSize = new System.Drawing.Size(548, 439);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.bAdd);
-            this.Controls.Add(this.bPrint);
             this.Controls.Add(this.bView);
             this.Controls.Add(this.dgList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -118,7 +106,6 @@ namespace CRM
 
         private System.Windows.Forms.DataGridView dgList;
         private System.Windows.Forms.Button bView;
-        private System.Windows.Forms.Button bPrint;
         private System.Windows.Forms.Button bAdd;
         private System.Windows.Forms.Button bSettings;
     }

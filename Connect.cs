@@ -61,9 +61,7 @@ namespace CRM
                 MessageBox.Show(ex.Message.ToString(), "Ошибка");
                 return false;
             }
-        }
-
-        
+        }        
 
         internal static void AddCard(string clientSName, string clientName, string patron, string tel, string master, string service, string planDeliveryDat, string user, string typeReg, bool isDone, string dateReg, string sumToPay, string sumPay, string datePay, string payType, string prim, int point_ID)
         {
@@ -99,7 +97,7 @@ namespace CRM
                 return false;
             }
 
-        }
+        }        
 
         private static bool SqlLogin(string login, string password)
         {
@@ -267,7 +265,6 @@ namespace CRM
             }
         }
 
-
         internal static void CustomQuery(string text)
         {
             Items.Clear();
@@ -297,8 +294,33 @@ namespace CRM
 
             }
         }
-    }
 
+        internal static void Reports(string item, string code, string name, string rtf, string query)
+        {
+            MySqlConnection mySqlConn = new MySqlConnection();
+            mySqlConn.ConnectionString = $"Database={baseName};Data Source={serverName};User Id=root;Password=1234";
+
+            if (code == null)
+            {
+                try
+                {
+                    string sqlString = $"call reports('{item}','{name}','{rtf}','{query}')";
+
+                    MySqlCommand sqlCommand = new MySqlCommand(sqlString, mySqlConn);
+                    sqlCommand.CommandType = CommandType.Text;
+                    mySqlConn.Open();
+                    sqlCommand.ExecuteNonQuery();
+                    mySqlConn.Close();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), "Ошибка");
+                }
+            }
+            
+        }
+    }
 }
 
 

@@ -31,7 +31,7 @@ CREATE TABLE `clients` (
   `patronymic` varchar(128) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Иванов','Иван','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000'),(3,'Петров','Петров','','89000000000'),(4,'Авакян','Зозо','','89001112233');
+INSERT INTO `clients` VALUES (1,'Иванов','Иван','Иванович','89000000000'),(2,'Сидоров','Сидоров','','89000000000'),(3,'Петров','Петров','','89000000000'),(4,'Авакян','Зозо','','89001112233'),(5,'Иванов','Иванов','Иванович','89000000000');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,1,1,2,1,1,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,''),(3,1,1,1,1,1,3,'2021-05-15 17:15:23',0,'2021-05-15 17:15:23','2021-05-15 17:15:23',250.5,0,'ываываыва'),(4,1,1,1,2,1,4,'2021-05-16 22:49:47',0,'2021-05-16 22:49:47','2021-05-16 22:49:47',250.5,0,'');
+INSERT INTO `orders` VALUES (1,1,1,1,2,1,5,'2021-05-15 10:33:24',0,'2021-05-15 10:33:24','2021-05-15 10:33:24',250.5,0,'примечание'),(2,1,1,1,2,1,2,'2021-05-15 13:52:33',0,'2021-05-15 13:52:33','2021-05-15 13:52:33',250.5,300,''),(3,1,1,1,1,1,3,'2021-05-15 17:15:23',0,'2021-05-15 17:15:23','2021-05-15 17:15:23',250.5,0,'ываываыва'),(4,1,1,1,2,1,4,'2021-05-16 22:49:47',0,'2021-05-16 22:49:47','2021-05-16 22:49:47',250.5,0,'');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,13 +165,14 @@ DROP TABLE IF EXISTS `reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reports` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `text` varchar(8000) NOT NULL,
-  `sql` varchar(8000) NOT NULL,
+  `textbody` varchar(8000) NOT NULL,
+  `sqlbody` varchar(8000) NOT NULL,
   `iscard` tinyint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +181,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
+INSERT INTO `reports` VALUES (1,'Чек','Чек о оплате заявки num\n\nКлиент  family name\nУслуга: service\nМастер: master\nЗарегистрировал(а): user\nК оплате: forpay\nОплачено: paysum datepay\n\nПодпись____________      Дата_________\n','select\r\no.id as num,\r\ndatedelivery,\r\ndatereg,\r\ndatepay,\r\nforpay,\r\npaysum,\r\nm.fullname as master,\r\ns.name as service,\r\nu.fullname as user,\r\np.name as paytype,\r\nr.name as reqtype,\r\nc.surname as family,\r\nc.name as name\r\nfrom orders o\r\nleft join masters m on m.id = o.master_id\r\nleft join services s on s.id=o.service_id\r\nleft join users u on u.id =o.user_id\r\nleft join paytype p on p.id = o.paytype_id\r\nleft join requesttype r on r.id = o.reqtype_id\r\nleft join clients c on c.id = o.client_id\r\nwhere o.id= ObjId\r\n',0);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -644,6 +646,9 @@ end if;
 if(target = 'card') then
 	call getcard(target_id);
 end if;
+if(target = 'report') then
+	select * from reports;
+end if;
 
 END ;;
 DELIMITER ;
@@ -696,6 +701,44 @@ if(target = 'paytype') then
 end if;
 if(target = 'report') then
 	select id, name from reports;
+end if;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `reports` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `reports`(in vid int,
+							   vname varchar(128),
+                               vbody varchar(8000),
+                               vquery varchar(8000))
+BEGIN
+
+if (vid = 0) then
+INSERT INTO reports (name, textbody, sqlbody, iscard)
+              select vname, vbody, vquery, 0;
+
+end if;
+
+if (vid <> 0) then
+UPDATE reports
+SET
+name = vname,
+textbody = vbody,
+sqlbody =vquery
+WHERE id = vid;
+
 end if;
 
 END ;;
@@ -788,4 +831,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-17  2:17:35
+-- Dump completed on 2021-05-17  5:26:13
