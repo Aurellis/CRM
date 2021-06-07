@@ -23,7 +23,7 @@ namespace CRM
         private static string dbuser;
         private static string dbpass;
 
-        internal static bool SettingsConnect(string _serverName, string _baseName = "", string _dbuser = "root", string _dbpass = "1234")
+        internal static bool SettingsConnect(string _serverName, string _baseName="", string _dbuser ="" , string _dbpass = "" )
         {
             serverName = _serverName;
             baseName = _baseName;

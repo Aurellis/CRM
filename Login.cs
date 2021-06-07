@@ -53,7 +53,7 @@ namespace CRM
             }
             else
             {
-                if ( tServerHost.Text == string.Empty || tServerHost.Text.Contains(' ') || !Connect.SettingsConnect(tServerHost.Text)  )
+                if ( tServerHost.Text == string.Empty || tServerHost.Text.Contains(' ') || !Connect.SettingsConnect(tServerHost.Text,"",tDbUser.Text,tDbPass.Text))
                 {
                     MessageBox.Show("Адрес сервера не указан или содержит недопустимые символы"); 
                 }
@@ -113,7 +113,7 @@ namespace CRM
 
         private void bLogin_Click(object sender, EventArgs e)
         {
-            if (connectState && Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString()))
+            if (connectState && Connect.SettingsConnect(tServerHost.Text, cbDataBases.SelectedItem.ToString(),tDbUser.Text,tDbPass.Text))
             {
                 if (tLogin.Text != string.Empty && tPassWord.Text != string.Empty)
                 {
